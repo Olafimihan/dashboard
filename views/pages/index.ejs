@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <% include ../partials/head %>
+
+    <!-- check for user on page load --> 
+    <% if (typeof usermail != "undefined") { %>
+        <!-- make user available to script tag -->
+        <% var usermail = usermail %>
+        <%=  usermail %>
+        <!-- use script tag to access ejs data and local storage -->
+        <script>
+            var user = `<%= usermail  %>` ;
+            localStorage.setItem('surveyusermail',  user);
+
+
+        </script>
+    <% } %>
+    <body>
+
+            
+        <% include ../partials/nav %>
+
+        <section name="jumbotron"  >
+            <div class="jumbotron text-center">
+                <h1>Integrated Solutions.</h1>
+                <!-- <p>Using EJS templating with Node.js</p> -->
+            </div>
+        </section>
+
+        <section name="">
+            <div class="col-sm-4 form-control">
+                <!-- <button type="button" class="btn btn-primary col-md-12" onclick="checker('newuser')" >Setup Users</button> -->
+                
+                
+                <!-- <button type="button" class="btn btn-primary col-md-12" onclick="checker('/newprogram')" >Setup Programs</button>
+                <button type="button" class="btn btn-primary col-md-12" onclick="checker('/newquestion')" >Setup Questions</button>
+                <button type="button" class="btn btn-primary col-md-12" onclick="checker('/rawresponse')" >Raw Responses</button>
+                <button type="button" class="btn btn-primary col-md-12" onclick="checker('/graphresponse')" >Graph Responses</button>
+                <button type="button" class="btn btn-primary col-md-12" onclick="checker('/newuser')" >Setup Users</button>
+                <button type="button" class="btn btn-primary col-md-12" onclick="checker('/about')" >About Us</button> -->
+
+            </div>
+            <!-- <img src="/public/img/logo.jpg" alt="logo" > -->
+            
+        
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+
+        <script type="text/javascript" >
+            var checker = (route)=>{
+                alert(window.url)
+
+                // alert("Dele: "+route)
+                var usermail = localStorage.getItem('surveyusermail');
+                // alert(usermail)
+                $.ajax({
+                    url: route,
+                    type: "GET",
+                    data: "usermail="+usermail,
+                    cache: false,
+                    success: function(data){
+                        // alert(data)
+                    },
+                    error: function(data){
+
+                    },
+                    datatype: 'text'
+                    
+                })
+            }
+        
+        </script>
+        
+
+    </body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/style.css">
+  
+    <body style="background-color: #cccccc"> 
+
+
+        
+            <% include ../partials/nav %>
+
+        <section name="logindetails">
+            <img src="logo.jpg" alt="logo" height="150" width="150" />
+            <h1 style="text-align: center; color: blue; margin-top: 35px">Change Company information.</h1>
+            <div style="width: 100%; align-content: center; padding-top: 0px; padding-bottom: 1200px">
+                
+                
+                <form method="POST" action="/info" > 
+                    <div class="col-md-3">
+
+                    </div>
+                    <div style="background-color: #cccccc; border-style: inset; height: 400px; font-size: 12px" class="col-md-6">
+  
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-12" >Phone Number</label>
+                            <input style="font-size: 12px; font-weight: normal" type="text" class="form-control col-md-12" value=" <%= phone %> " autocomplete="off" id="phone" placeholder="Phone Number..." size="40"   />
+                        </div> 
+                        
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-12" >Email</label>
+                            <input style="font-size: 12px; font-weight: normal" type="text" class="form-control col-md-12"  value=" <%= email %> "autocomplete="off" id="email" placeholder="Email Address..." size="40" />
+                        </div> 
+                                                
+                        <div class="form-group col-md-12">
+                            <label class="control-lable col-md-12">Address 1: </label>  
+                            <input class="form-control col-md-12" type="text" id="address1"  value=" <%= add1 %> " placeholder="Address..." >
+                        </div> 
+
+                        <div class="form-group col-md-12">
+                            <label class="control-lable col-md-12">Address 2: </label>  
+                            <input class="form-control col-md-12" type="text" id="address2"  value=" <%= add2 %> " placeholder="Address..." >
+                        </div> 
+                        
+                        <div class="form-group col-md-12">
+                            <label class="control-lable col-md-12">Address 3: </label>  
+                            <input class="form-control col-md-12" type="text" id="address3" value=" <%= add3 %> " placeholder="Address..." >
+                        </div> 
+                         
+                        <button name="add" type="button" class="btn btn-success col-md-12" onclick="changeCompanyInfo()" >Change Info</button>
+
+                    </div>
+                </form>
+
+                 
+        
+            </div>
+        </section>
+
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+
+        <script>
+            var changeCompanyInfo = ()=>{
+                var phone = $('#phone').val()
+                var email = $('#email').val()
+                var add1 = $('#address1').val()
+                var add2 = $('#address2').val()
+                var add3 = $('#address3').val()
+                
+                $.ajax({
+                    url: "/update",
+                    data: "phone="+phone+"&email="+email+"&add1="+add1+"&add2="+add2+"&add3="+add3,
+                    type: "POST",
+                    cache: "false",
+                    // enctype: "multipart/form-data",
+                    success: function(data){
+                        alert(data)
+                    },
+                    error: function(data){
+
+                    },
+                    datatype: "text"
+
+                });
+
+
+
+            }
+        
+        </script>
+
+    </body>
+
+</html>

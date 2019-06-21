@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+        <% include ../partials/head %>
+    <body style="background-color: #cccccc"> 
+        <section name="jumbotron"  >
+            <div class="jumbotron text-center">
+                <h1>cPanel Login</h1>
+                <p>Login to the cPanel with your credentials.</p>
+
+            </div>
+        </section>
+
+        <section name="logindetails">
+            <div style="width: 450px; align-content: center; margin-left: auto; margin-right: auto; padding: 30px">
+                <form method="POST" action="/login">
+
+
+                    <div id="errmsg" style="height: auto; font-size: 20px; font-weight: bold; text-align: center; color: #f50"></div>
+                    
+                    <div class="group">
+                        <input type="text" name="user" autocomplete="off" class="form-control" placeholder="Username" size="20">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    
+                    <div class="group">
+                        <input type="password" name="pass" autocomplete="off" class="form-control" placeholder="Password">
+                        <i class="fa fa-key"></i>
+                    </div>
+                    
+                    <div class="checkbox checkbox-primary">
+                        <input id="checkbox101" type="checkbox" checked>
+                        <label for="checkbox101"> Remember Me</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success btn-block">LOGIN</button>    
+                </form>
+            
+            </div>
+        </section>
+
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+
+        <script type='text/javascript'>
+        
+        </script>
+    </body>
+
+</html>

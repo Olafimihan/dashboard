@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" ></script> -->
+
+    <!-- <script src="/public/js/jquery-3.3.1.js" ></script> -->
+
+    <% include ../partials/head %>
+
+<head>
+  
+  <% include ../partials/nav %>
+
+  <script type="text/javascript" >
+    // $(document).ready(function(){
+    //     alert('DOM ready...')
+    // })  
+
+    var showReport2 = ()=>{
+        var usermail = localStorage.getItem("surveyusermail");
+        // alert(usermail);
+        $("#user").val(usermail);
+    }
+
+    var showReport = ()=>{
+        // var project = $("#")
+        var usermail = localStorage.getItem("surveyusermail");
+        // alert(usermail);
+
+        
+
+
+        var data = {};
+        data.title = project;
+        data.message = usermail;
+
+
+        $.ajax({
+            // url: "/rawdata",
+            url: "/rawdata?project="+project+"&user="+usermail,
+            // type: "GET",
+            method:"GET",
+            data: JSON.stringify(data),
+            // data: "usermail="+usermail+"&project="+project ,
+            cache: false,
+            success: function(data){
+                alert("S: "+data);
+            },
+            error: function(data){
+                alert("E: "+data);
+            },
+            datatype: "text"
+        })
+
+
+    }
+
+     
+
+    // $(document).on('click', '#save', do_ajax_call)
+
+    function do_ajax_call (e) {
+        // e.preventDefault()
+        // alert('dele')
+        $.get('/your_route', {data: 'goes here'}, function (res) {
+            console.log('callback after your node function is done')
+        })
+    }
+
+    window.onload = function () {
+        var usermail = localStorage.getItem("surveyusermail");
+        // alert(usermail)
+        
+        $("#user").val(usermail);
+    }
+  </script>
+
+
+</head>
+
+<body class="container">
+  <header style="text-align: center; background-color: bisque">
+        <h2 style="margin-top: 50px">Real Field Raw Data...</h2>
+        <!-- <p>The following is a list of all -->
+          <!-- <b>real raw</b> field data. -->
+         
+  </header>
+
+  <main  class="">
+      <div style="background-color: green; width: 1000px">
+        
+        <form class="loader" action="/rawdata" method="POST" > 
+            <input class="user" type="hidden" id="user" name="user" value=""  >
+            <div class="form-group col-md-6">
+                <!-- <label class="col-md-12 control-label">Select Project: </label> -->
+
+                <select class="form-control col-md-12" id="projectid" name="projectid" onchange="showReport2()">
+                    <% var options = []; %>
+                    <option value = "0" > Please, select a project... </option>
+                    <% for(var i = 0; i <= project.length -1; i++) { %>
+                        <option value = "<%= project[i].refnos %>" > <%= project[i].project_title %> </option>
+                    <% } %>
+                </select>
+                <!--  -->
+                
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" id="save" class="btn btn-success col-md-6 btn-group-sm"  >Filter Data</button>
+                <button type="button" id="close" class="btn btn-primary col-md-6 btn-group-sm" onclick="window.location='login'" >Close</button>
+            </div>
+        </form>
+
+      </div>
+
+    <div class="" style="background-color: whitesmoke; border-style: inset; height: 480px; width: 100%; overflow: scroll">
+     
+      <!-- table to display unsafe foods -->
+      <table class="table table-bordered" id="result" width='100%' border=1>
+ 
+        
+        
+        <!--
+            Using FOREACH LOOP for the users array
+            
+            data.forEach(function(el, index) {
+                // el - current element, i - index
+            });
+        -->
+        <% if( questions && responses && project ){ %>
+ 
+            <% topmail %>
+            <% bottommail %>
+            <!-- <%= JSON.stringify(responses) %> -->
+
+            <% var questionArray = [] %>
+
+            <tr style='text-align:left; background-color:#CCC; color: #000; text-decoration: no-wrap'>
+                
+                <th>Respondent Email</th>
+                <th>GPS location</th>
+
+                <% questions.forEach(function(el, idx){ %>  
+                    <% var _qref %>
+                     
+                    <th style="text-align: left; white-space: nowrap"><%= questions[idx].question %></th> <!--Write questions as the main heading -->
+
+                    <% _qref = questions[idx].refnos %> 
+                    
+                <% }) %>
+
+            </tr>
+
+           
+            <% responses.forEach(function(el, indx){ %> 
+
+                    <% var currentmail = responses[indx].usermail %>
+                    
+                    <% if(topmail != currentmail){ %>  
+                        <tr>
+                            <td><%= currentmail %></td>
+                            <td><%= responses[indx].location %></td>
+
+                            <td style="text-align: center"><%= responses[indx].response_text %></td>   
+                        
+                    <% }else if(topmail == currentmail){ %> 
+                            <td style="text-align: center"><%= responses[indx].response_text %></td> 
+                            <!-- <td><%= responses[indx].gpslocation %></td>    -->
+                        <% if(topmail == currentmail){ %>  
+
+                        <% }else{ %> 
+                        </tr>    
+                        <%} %>
+                        
+                    <% } %> 
+
+                    
+                    <% topmail = currentmail %>
+                                                
+            <% }) %>
+
+
+
+        <%    
+    
+        } %>
+     
+    </table>
+    </div>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+    <% include ../partials/scripts %>
+    
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/public/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" >
+    <body style="background-color: #cccccc"> 
+
+             
+
+            <% include ../partials/nav %>
+
+            
+
+        <section name="logindetails">
+            <img src="logo.jpg" alt="logo" height="150" width="150" />
+            <h1 style="text-align: center; color: blue; margin-top: 35px">Enter new delivery information.</h1>
+            <div class="wrapper animated bounceInLeft" style="width: 100%; align-content: center; margin-left: auto; margin-right: auto; padding-top: 0px; padding-bottom: 500px">
+                                
+                <form method="POST" action="/add" enctype="multipart/form-data" > 
+                    <div style="background-color: transparent; border-style: inset; height: 420px; font-size: 12px" class="col-md-4">
+  
+                        <div class="form-group col-md-7">
+                            <label class="control-label col-md-12" >Product name</label>
+                            <input style="font-size: 12px; font-weight: normal" type="text" class="form-control col-md-12" autocomplete="off" name="product" placeholder="Product Name..." size="40"   />
+                        </div> 
+                        
+                        <div class="form-group col-md-7">
+                            <label class="control-label col-md-12" >owners email</label>
+                            <input style="font-size: 12px; font-weight: normal" type="text" class="form-control col-md-12" autocomplete="off" name="email" placeholder="Owners' email Address..." size="40" />
+                        </div>
+                        
+                        <div class="form-group col-md-7">
+                            <label class="control-label col-md-12">Product Image</label>
+                            <input type="file" name="myImage" >
+
+                        </div>
+ 
+                        <!-- <div class="form-group col-md-7">
+                            <label class="control-label col-md-12" >Order Date</label>
+                            <input style="font-size: 12px; font-weight: normal" type="date" class="form-control col-md-12" autocomplete="off" name="dated" placeholder="Date Order was placed..." size="40" />
+                        </div> 
+ 
+                        <div class="form-group col-md-7">
+                            <label class="control-label col-md-12" >Flight Date</label>
+                            <input style="font-size: 12px; font-weight: normal" type="date" class="form-control col-md-12" autocomplete="off" name="flightdated" placeholder="Flight Date of this Order..." size="40" />
+                        </div>  -->
+                        
+                        <!-- <div class="form-group col-md-7">
+                            <label class="control-label col-md-12" >Weight</label>
+                            <input style="font-size: 12px; font-weight: normal" type="text" class="form-control col-md-12" autocomplete="off" name="weight" placeholder="Product weight..." size="40" />
+                        </div> 
+ 
+                        <div class="form-group col-md-7">
+                            <label class="control-label col-md-12" >Height</label>
+                            <input style="font-size: 12px; font-weight: normal" type="text" class="form-control col-md-12" autocomplete="off" name="height" placeholder="Product height..." size="40" />
+                        </div>  -->
+  
+            
+                        <button name="add" type="submit" class="btn btn-success col-md-12" >Submit New Job</button>
+                    </div>
+                </form>
+
+                <div style="background-color: transparent; border-style: inset; height: 420px;  overflow: scroll" class="col-md-8">
+                    
+                    <% var colorsetter=0 %>
+
+                    <% if(result){ %>
+                        <h2>Jobs List</h2>
+                        <table border="0" width="100%" cellpadding="10" cellspacing="10" >
+                            <tr style="background-color: darkgreen; color: white">
+                                <th>Product Name</th>
+                                <th>User Email</th>
+                                    
+                                <!-- <th>Flight Date</th> -->
+                                <th>Weight</th> 
+                                 <th></th>
+                                 <th></th>
+                            </tr>
+                           <% for(var i= 0; i<result.length; i++) { %>
+                            
+                            <% if(colorsetter=0){ %>
+                            <tr style="background-color: black; color: white" >
+                            <% }else{ %>
+                            <tr style="background-color: white; color: black" >   
+
+                            <% } %>
+                                <!-- <td>  <%= result[i].refnos %> </td> -->panties
+                                <td>  <%= result[i].product_name %> </td>
+                                <td>  <%= result[i].usermail %> </td>
+                                <!-- <td>  <%= result[i].submit_date %> </td> -->
+                                <td style="text-align: center">  <%= result[i].product_weight %> </td>
+                                 
+                                <td><button class="btn btn-primary" value=" <%= result[i].refnos %> " onclick="addImage(this.value)"> Add Image</button></td>
+                                <td><button class="btn btn-primary" value=" <%= result[i].refnos %> " onclick="deleter(this.value)" >Delete Job</button></td>
+                            </tr>    
+                           <% } %> 
+
+                        </table>
+                        
+                       <% } %>
+                </div>
+        
+            </div>
+        </section>
+
+        <% include ../partials/footer %>
+
+        <% include ../partials/scripts %>
+
+        <script type="text/javascript">
+            var deleter = (ref) =>{
+                $.ajax({
+                    url:    "/delete",
+                    data:   "reference="+ref,
+                    cache:  "false",
+                    type:   "POST",
+                    success:    function(){
+
+                    },
+                    error:      function(){
+
+                    }
+                })
+            }
+
+            var addImage = (ref) =>{
+                $.ajax({
+                    url:    "/image",
+                    data:   "reference="+ref,
+                    cache:  "false",
+                    type:   "post",
+                    success:    function(){
+
+                    },
+                    error:      function(){
+
+                    }
+                })
+            }
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+  <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+  <title>Survey Admin Dashboard</title>
+
+  <!-- ========== Css Files ========== -->
+  <link href="css/root.css" rel="stylesheet">
+  
+  <style type="text/css">
+    body{
+      background: #F5F5F5;
+    }
+  </style>
+
+  <style >
+    
+  </style>
+
+  </head>
+  <body>
+
+    <div class="login-form">
+      <form action="/menu" method="post" onsubmit="getmail()">
+        <div class="top">
+          <img src="img/logo.jpg" alt="icon" width="274" height="80" >
+          <h1>CPanel Login</h1>
+          <!-- <h4>Admin CPanel</h4> -->
+        </div>
+        <div class="form-area">
+          <div class="group">
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <i class="fa fa-key"></i>
+          </div>
+          <div class="checkbox checkbox-primary">
+            <!-- <input id="checkbox101" type="checkbox" checked> -->
+            <!-- <label for="checkbox101"> Remember Me</label> -->
+          </div>
+
+          <button type="button" class="btn btn-default btn-block" onclick="userinfo()">LOGIN</button>
+          <button type="submit" id="o_menu" class="btn btn-default btn-block hidden">LOGIN</button>
+        </div>
+      </form>
+      <div class="footer-links row">
+        <!-- <div class="col-xs-6"><a href="#"><i class="fa fa-external-link"></i> Register Now</a></div>
+        <div class="col-xs-6 text-right"><a href="#"><i class="fa fa-lock"></i> Forgot password</a></div> -->
+      </div>
+    </div>
+
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="js/plugins.js"></script>
+    
+    <script src="js/datatables/datatables.min.js"></script>
+    
+    <script src="js/sweet-alert/sweet-alert.min.js"></script>
+    
+    
+<script>
+
+
+    var getmail = () => {
+      // alert('dee')
+      var user = document.getElementById('username').value;
+      // alert(user)
+      localStorage.setItem('userid', user);
+    }
+
+    var userinfo = () => {
+      var user=$('#username').val();
+      var pass=$('#password').val();
+ 
+      $.ajax({
+        url: "/userinfo",
+        data: "user="+user+"&pass="+pass,
+        cache: false,
+        method: "GET",
+        success: (data) => {
+            // console.log(JSON.parse(data).name)
+            localStorage.setItem('name', JSON.parse(data).name);
+            localStorage.setItem('roleId', JSON.parse(data).roleId);
+            localStorage.setItem('user', JSON.parse(data).userId);
+            $('#o_menu').click();
+        },
+        error: (err) => {
+
+        },
+        dataType: "text"
+      })
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+        <% include ../partials/head %>
+    <head>
+           
+        <% include ../partials/nav %>
+
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=7">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+
+        <link rel="stylesheet" href="/public/bootstrap.min.css" >
+        <link rel="stylesheet" href="/public/style.css">
+        <link rel="stylesheet" href="/public/css/jqueryui.css" >
+
+         <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.0/examples/starter-template/starter-template.css" rel="stylesheet">
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+         
+         
+        
+        <script src="/public/js/index.js"></script>  
+        
+        
+                           
+        <title>Create Survey Project</title>
+        
+        <style >
+            body{
+                background-color: aquamarine;
+            }
+            .container {
+                /* margin-top: 100px; */
+                
+            }
+
+            .holder{
+                margin-top: 50px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+             
+            #r1{
+                background-color: whitesmoke;
+                /* border-style: groove; */
+                width: 300px;
+                float: left;
+                margin: .05%;
+                height: 450px;
+            }
+
+            #r2{
+                background-color: cadetblue;
+                /* border-style: ridge; */
+                width: 320px;
+                float: left;
+                margin: .05%;
+                margin-top: 20px;
+                height: 450px;
+            }
+
+            #r3{
+                background-color: whitesmoke;
+                /* border-style: groove; */
+                width: 700px;
+                float: left;
+                margin-left: 5;
+                height: 500px;
+                font-size: 14px;
+                margin-top: 20px;
+            }
+            
+        </style>
+        
+    </head>
+ 
+    <body> 
+        <!-- content for about page -->
+        <div class="container" id="about">
+            <input type="hidden" class="projectid" >
+             
+            <% if( typeof usermail != "undefined"){ %>               
+            
+            <!-- <div class="holder" > -->
+                 
+                <div class="row" id="r2" >
+                    <h2 class="text-center">Project Questions Setup</h2>
+                    <form method="POST" action="/insertquestion">
+                        <div id="errmsg" style="height: auto; font-size: 20px; font-weight: bold; text-align: center; color: #f50"></div>
+                        <input type="hidden" name="usermail" id="usermail" value="<%= usermail %>" >
+                                                 
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-5" >Project Title</label>
+                            <select class="form-control col-md-7" id="projectid" name="projectid" onchange="getQuestion(this.value)">
+                                <% var options = []; %>
+                                    <option value = "0" > Please, select a project... </option>
+                                <% for(var i = 0; i <= projects.length -1; i++) { %>
+                                    <option value = "<%= projects[i].refnos %>" > <%= projects[i].project_title %> </option>
+                                <% } %>
+                            </select>                            
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            <label for="title" class="col-md-5" >Question</label>
+                            <input type="text" name="question" id="question" autocomplete="off" class="form-control col-md-7" placeholder="Enter new question...">                            
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            <label for="position" class="col-md-5" >Question Position</label>
+                            <input type="number" name="position" id="position" autocomplete="off" class="form-control col-md-7" placeholder="Question position...">                            
+                        </div>
+
+                                               
+                        
+                        <button type="submit" id="save" class="btn btn-success " onclick="dalay()" >Submit</button>    
+                        <button type="submit" class="btn btn-success ">Close</button>    
+
+                    </form>
+
+                </div>
+
+                <div class="row hidden" id="r3" style="margin-top: 0px; margin-left: 5px" >
+                    <h3 style="text-align: center; background-color: #ffcccc">Existing Questions</h3>
+                    
+                    <!-- <p width="50%"> -->
+                    <div class="table-responsive" style="width: auto; background-color: whitesmoke; overflow: scroll" id="res">
+
+                    </div>
+                    <!-- </p> -->
+                     
+                </div>
+
+
+            <!-- </div> -->
+
+            <% } %>
+        </div><!-- end of content -->
+         
+        <div class="modal fade" id="addConditions" role="modal" style="width: 1500px">
+            <div class="modal-dialog modal-lg" title="Add Conditions to various questions" style="width: 700px" >
+                <div class="modal-content">
+                    <input type="hidden" class="refnos" >
+                    <input type="hidden" id="quest" >
+                    
+                    <input type="text" id="questno" >
+                    <!-- <input type="hidden" id="currentuser" > -->
+
+                    <div class="modal-header" style="padding: 15px 40px; background-color: antiquewhite">
+                        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                        <h4 style="text-align: center">Add Conditions to various questions Choices.</h4>
+                    </div>
+
+                    <div class="modal-body" style="height: 300px; ">
+                        <div class="form-group col-md-12"> 
+                            <textarea class="q1" cols="50" rows="2" data-toggle="tooltip" readonly  style="font-weight: bolder; font-size: 18px"></textarea>
+                        </div> 
+                        
+                        <div class="col-md-12">
+                            <div class="form-group col-md-6">
+                                <label for="choice" class="col-md-2" >Select Option</label>
+                                <select class="form-control col-md-4" name="choice" id="choice" onchange="getGoto(this.value)">
+                                </select>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="goto" class="form-label col-md-2" style="font-size: 12px" >Goto Question</label>                                 
+                                <select name="goto" id="goto" onchange="getQuestionIndex(this.value)" class="form-control col-md-4">                                    
+                                </select>    
+                            </div>
+
+                        </div>
+
+                        <div class="form-group-sm col-md-12 res hidden" style="overflow-y: scroll; height: 100px" >
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer col-md-12" style="background-color: antiquewhite">
+                        <button type="button" class="btn btn-success rounded" onclick="saveCondition()" id="condition" ><i class="fa fa-arrow-circle-o-up" ></i>Submit</button>
+                        <button type="button" class="btn btn-primary" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="pushtodisplay" role="modal" style="width: 400px">
+            <div class="modal-dialog modal-sm" title="Add expected Options for questions">
+                <div class="modal-content">
+                    <input type="hidden" class="refnos" >
+                    <input type="hidden" id="quest" >
+                    <!-- <input type="hidden" id="currentuser" > -->
+
+                    <div class="modal-header" style="padding: 15px 40px; background-color: #00acac">
+                        <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                        <h4><span></span>Add Options for questions</h4>
+                    </div>
+
+                    <div class="modal-body" style="height: 300px; ">
+                        <div class="form-group col-md-12">
+                            <!-- <label for="teler1" class="form-label col-md-5" style="font-size: 22px" >Your Question</label>  -->
+                            <div class="form-control col-md-6" >
+                                <textarea class="q1 col-md-12" cols="50" rows="2" data-toggle="tooltip" readonly  style="font-weight: bolder; font-size: 18px"></textarea>
+                            </div>
+                            
+                            <div class="form-control col-md-12">
+                                <input class="col-md-4" type="checkbox" name="required" id="required" ><b>Required Question?</b>
+                            </div>
+                            
+                        </div> 
+                        
+                        <div class="col-md-8">
+                            <!-- <h4 >Add Options</h4> -->
+
+                            <div class="form-group col-md-6">
+                                <label for="edate" class="col-md-5" >Response Text</label>
+                                <input type="text" name="response" id="response" autocomplete="off" class="form-control col-md-7" placeholder="Enter Choice text to be seen by users...">                            
+                            </div>
+
+                            <div class="form-group col-md-7">
+                                <label for="teler1" class="form-label col-md-5" style="font-size: 16px" >Choice Type</label> 
+                                
+                                <select name="c_type" id="c_type" class="form-control col-md-7">
+                                    <option value="0" >Select Choice display type</option>
+                                    <option value="txt" >Text Input</option>
+                                    <option value="num" >Number Input</option>
+                                    <option value="rad" >Radio button</option>
+                                    <option value="chk" >Check boxes</option>
+                                    <option value="img" >Image Picker</option>
+                                </select>
+    
+                            </div>  
+
+                        </div>
+
+                        <div id="choices" class="form-group col-md-4" style="background-color: whitesmoked; height: 200px; overflow: scroll" > 
+                             
+                        </div> 
+
+
+                    </div>
+
+                    <div class="modal-footer col-md-12" style="background-color: #00acac">
+                        <button type="button" class="btn btn-group-sm rounded" onclick="saveChoices()" id="pusher" ><i class="fa fa-arrow-circle-o-up" ></i>Submit</button>
+                        <button type="button" class="btn btn-orange" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </body>
+
+     <!-- Bootstrap & Core Scripts -->
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script> 
+     <script src="https://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+ 
+     <script type="text/javascript">
+       $('tbody').sortable();
+     </script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>
+    
+    <script src="/public/js/socket.js" ></script>  -->
+
+</html>
+
+
+

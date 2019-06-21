@@ -1,0 +1,226 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/root.css" rel="stylesheet">
+    
+    <title>Setup Users</title>
+</head>
+<body>
+    <!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+
+        <ul class="sidebar-panel nav">
+          <li class="sidetitle">MAIN</li>
+          <li><a href="project.html"><span class="icon color5"><i class="fa fa-home"></i></span>New Project<span class="label label-default">2</span></a></li>
+          <li><a href="questions.html"><span class="icon color6"><i class="fa fa-pencil"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
+          <!-- <li><a href="synchproject.html"><span class="icon color8"><i class="fa fa-search"></i></span>Sync Questionaire</a></li> -->
+          <li><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>Data Tables<span class="caret"></span></a>
+            <ul>
+              <li><a href="datatable.html"><span class="icon color8"><i class="fa fa-database"></i></span>Raw Data</a></li>
+              <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+            </ul>
+          </li>
+        
+          <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>     
+          <li><a href="users.html"><span class="icon color8"><i class="fa fa-users"></i></span>Setup Clients</a></li>     
+          <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>     
+          <li><a href="support.html"><span class="icon color8"><i class="fa fa-home"></i></span>Support Tickets</a></li>     
+        </ul>
+    </div>
+        
+        <!-- </div> -->
+        <!-- END SIDEBAR -->
+        <!-- //////////////////////////////////////////////////////////////////////////// --> 
+        
+    <div class="content" >
+        <div class="container-padding" >
+            <div class="row" >
+                <form action = "/board.html" method = "GET" >
+                    <div class="panel col-md-12">
+                        <div class="panel-header">
+                            <h2 style="text-align: center">Map Users to Project</h2>
+
+                        </div>
+                        <div class="panel-body">
+                            <input type="text" name="owner" id="owner">
+                            <div class="col-md-12">
+                                <div class="col-md-6">    
+                                    <div class="col-md-12 form-group">
+                                        <label class="col-md-4" for="name">Select Project</label>
+                                        <select class="col-md-8 form-control" name="project" id="project" onchange="getba(this.value)">
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <label class="col-md-4" for="name">Select Users.</label>
+                                        <select class="col-md-8 form-control" name="user" id="user" onchange="getEmail(this.value)" >
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <table id="data" class="table table-hover">
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="panel-footer">
+                            <button class="btn btn-primary" type="button" onclick="mapuser()">Map User</button>
+                            <button  class="btn btn-danger" type="submit" >Close</button>
+
+                        </div>
+
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+    <script src="js/socket.js" ></script>
+
+    <script>
+        $(document).ready(() => {
+            $('#user').val(localStorage.getItem('userid'));
+            var name = localStorage.getItem('name');
+            var user = localStorage.getItem('userid');
+            var role = localStorage.getItem('roleId');
+
+            
+            if(role=='client'){
+                $('.newproject').addClass('hidden')
+                $('.questionaire').addClass('hidden')
+                
+                $('.users').addClass('hidden')
+                $('.mapping').addClass('hidden')
+
+            }else if(role=='manager'){
+                $('.newproject').addClass('hidden')
+                $('.questionaire').addClass('hidden')
+
+                $('.users').addClass('hidden')
+                $('.mapping').addClass('hidden')
+
+            }
+
+            $.ajax({
+                url: "/getprojectslist",
+                method: "GET",
+                data: "user="+user+"&role="+role,
+                cache: false,
+                success: (data) => {
+                    $('#project').html(data);
+                },
+                error: (err) => {
+
+                },
+                dataType: "text"
+            })
+            $.ajax({
+                url: "/getuserslist",
+                method: "GET",
+                data: "user="+user+"&role="+role,
+                cache: false,
+                success: (data) => {
+                    $('#user').html(data);
+                },
+                error: (err) => {
+
+                },
+                dataType: "text"
+            })
+            // alert(user)
+        });
+
+        var getEmail = (id) => {
+            // alert(id);
+            $.ajax({
+                url: "/getEmail",
+                method: "GET",
+                cache: false,
+                data: "ref="+id,
+                success: (data) => {
+                    $("#owner").val(JSON.parse(data).email);
+                },
+                error: (err) => {
+
+                },
+                dataType: "text"
+            })
+            
+        }
+
+        var getba = (id) => {
+            // alert(id)
+            $.ajax({
+                url: "/getbas",
+                method: "GET",
+                cache: false,
+                data: "ref="+id,
+                success: (data) => {
+                    $("#data").html(data);
+                },
+                error: (err) => {
+
+                },
+                dataType: "text"
+            })
+        }
+
+        var mapuser = () => {
+            var user = $('#user').val();
+            var owner = $('#owner').val();
+            var project = $('#project').val(); 
+
+            // alert(user);
+            // alert(owner);
+            // alert(project);
+
+            $.ajax({
+                url: "/mapusers",
+                method: "GET",
+                data: "user="+user+"&owner="+owner+"&project="+project,
+                cache: false,
+                success: (data)=>{
+                    $("#data").html(data);
+                },
+                error: (err)=>{
+
+                },
+                dataType: "text"
+            })
+        };
+
+        // var closewindow = () => {
+        //     alert('dee')
+        //     $.ajax({
+        //         url: "/close",
+        //         method: "GET",
+        //         // data: "user="+user+"&owner="+owner+"&project="+project,
+        //         cache: false,
+        //         success: (data)=>{
+        //             // $("#data").html(data);
+        //         },
+        //         error: (err)=>{
+
+        //         },
+        //         dataType: "text"
+        //     })
+        // }
+    
+    </script>
+    
+</body>
+</html>

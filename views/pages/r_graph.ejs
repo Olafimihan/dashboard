@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+    <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+
+    <title>Survey - Admin dashboard</title>
+    
+    <!-- ========== Css Files ========== -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/root.css" rel="stylesheet">
+    <link rel="stylesheet" href="">
+      
+    <link rel="stylesheet" href="css/plugin/sweet-alert/sweet-alert.css">
+
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+    <script src="js/socket.js" ></script>
+
+    <script type="text/javascript" > 
+
+    
+    </script>
+    <style>
+        .ct-chart .ct-perfect-fourth,
+            .ct-charrt .ct-perfect-fourth {
+                stroke: blue;
+            }
+    
+    </style>
+  </head>
+  <body onload="getdata()">
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+  <!-- START TOP -->
+  <div id="top" class="clearfix">
+
+    <!-- Start App Logo -->
+    <div class="applogo">
+      <a href="index.html" class="logo">Survey</a>
+    </div>
+    <!-- End App Logo -->
+    <h1 class="text-center">Graphical Report</h1>
+
+     
+  </div>
+  <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+
+<ul class="sidebar-panel nav">
+  <li class="sidetitle">MAIN</li>
+  <li><a href="project.html"><span class="icon color5"><i class="fa fa-home"></i></span>New Project<span class="label label-default">2</span></a></li>
+  <li><a href="questions.html"><span class="icon color6"><i class="fa fa-envelope-o"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
+  <li><a href="synchproject.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Sync Questionaire</a></li>
+  <li><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>Data Tables<span class="caret"></span></a>
+    <ul>
+      <li><a href="datatable.html">Raw Data</a></li>
+      <li><a href="graphtable.html">Graphical Data</a></li>
+    </ul>
+  </li>
+  <li><a href="support.html"><span class="icon color8"><i class="fa fa-envelope-o"></i></span>Support Ticket</a></li>
+     
+ </div>
+<!-- END SIDEBAR -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTENT -->
+<div class="content">
+
+  
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTAINER -->
+<div class="container-padding">
+
+    <div class='row' >
+        <div class='col-md-12' >
+            <div class='panel panel-default'>
+                
+                <!-- <div class='panel-title'>
+                    Select Question
+                </div> -->
+
+                <div class="panel-body" >
+                    <div class="form-group col-md-12" >
+                        <label for="projects" class="col-md-7">Select Project</label>
+                        <select class="col-md-8" name="projects" id="projects" onchange="getQuestions(this.value)" >
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="questions" class="col-md-7">Select Question</label>
+                        <select class="col-md-12" name="questions" id="questions" onchange="getQuestionGraphReport(this.value)">
+
+                        </select>
+                    </div>
+
+                    <div class="" >
+                        <!-- <p class="col-md-4 col-lg-12"> -->
+                            <input class="" type="radio" name="chart" value='line' id="line" > Line Chart
+                            <input class="" type="radio" name="chart" value='bar' id="bar" > Bar Chart
+                            <input class=""  type="radio" name="chart"  value='pie' id="pie" checked > Pie Chart
+
+                            <!-- <button class="btn btn-primary" ><i class="fa fa-preview" >Preview</i></button> -->
+                            <button class="btn btn-success" ><i class="fa fa-excel" >Export Excel</i></button>
+                            <button class="btn btn-primary" ><i class="fa fa-pdf" >Export PDF</i></button>
+                        <!-- </p>             -->
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+  
+    <!-- Start first Row -->
+    <div class="row">
+        
+        <!-- Start Chart -->
+        <div class="col-lg-8 col-md-8 ">
+            <div class="panel panel-default">
+                <div class="panel-title">
+                    Simple Line Chart
+                </div>
+                <div class="panel-body">
+                    <div id="chartist-line" class="ct-chart ct-perfect-fourth"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Chart -->
+
+
+
+        <!-- Start Chart -->
+        <div class="col-lg-8 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-title">
+                    Simple Pie Chart
+                </div>
+                <div class="panel-body">
+                    <div id="chartist-pie" class="ct-chart ct-perfect-fourth"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Chart -->
+          
+        <!-- Start Chart -->
+        <div class="col-lg-8 col-md-8">
+            <div class="panel panel-default">
+            <div class="panel-title">
+                Bars
+            </div>
+                <div class="panel-body">
+                    <div id="rickshaw-bars"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Chart -->
+  
+
+ 
+    </div> <!-- End First Row -->
+ 
+</div>
+
+</div>
+ 
+
+<!-- ================================================
+jQuery Library
+===================================================== -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+===================================================== -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!--
+    SweetAlert
+-->
+<script src="js/sweet-alert/sweet-alert.min.js"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+=====================================================-->
+<script type="text/javascript" src="js/plugins.js"></script>
+
+<!-- ================================================
+Flot Chart
+===================================================== -->
+<!-- main file -->
+<script type="text/javascript" src="js/flot-chart/flot-chart.js"></script>
+<!-- time.js -->
+<script type="text/javascript" src="js/flot-chart/flot-chart-time.js"></script>
+<!-- stack.js -->
+<script type="text/javascript" src="js/flot-chart/flot-chart-stack.js"></script>
+<!-- pie.js -->
+<script type="text/javascript" src="js/flot-chart/flot-chart-pie.js"></script>
+<!-- demo codes -->
+<script type="text/javascript" src="js/flot-chart/flot-chart-plugin.js"></script>
+
+<!-- ================================================
+Chartist
+===================================================== -->
+<!-- main file -->
+<script type="text/javascript" src="js/chartist/chartist.js"></script>
+<!-- demo codes -->
+<script type="text/javascript" src="js/chartist/chartist-plugin.js"></script>
+
+<!-- ================================================
+Easy Pie Chart
+===================================================== -->
+<!-- main file -->
+<script type="text/javascript" src="js/easypiechart/easypiechart.js"></script>
+<!-- demo codes -->
+<script type="text/javascript" src="js/easypiechart/easypiechart-plugin.js"></script>
+
+<!-- ================================================
+Sparkline
+================================================ -->
+<!-- main file -->
+<script type="text/javascript" src="js/sparkline/sparkline.js"></script>
+<!-- demo codes -->
+<script type="text/javascript" src="js/sparkline/sparkline-plugin.js"></script>
+
+<!-- ================================================
+Rickshaw
+================================================ -->
+<!-- d3 -->
+<script src="js/rickshaw/d3.v3.js"></script>
+<!-- main file -->
+<script src="js/rickshaw/rickshaw.js"></script>
+<!-- demo codes -->
+<script src="js/rickshaw/rickshaw-plugin.js"></script>
+
+<script>
+    var getdata = () => {
+        var user = localStorage.getItem('userid');
+        $.ajax({
+            url: "/projects",
+            type: "GET",
+            data: "usermail="+user,
+            cache: false,
+            success: (respObj) => {
+                // alert(respObj);
+                // alert(respObj.project);
+
+                $("#projects").html(respObj)
+            },
+            error: (errObj) => {
+
+            },
+            dataType : "text"
+        })
+    }
+
+    var getQuestionGraphReport = (refcode) => {
+        var charttype  = $('input:radio[name=chart]:checked').val();  
+ 
+        
+        $.ajax({ 
+            url: "/getquestiongraphdata",
+            method:"GET",
+            data: "questionid="+refcode,
+            // data: "usermail="+usermail+"&project="+project ,
+            cache: false,
+            success: function(data){
+                var label; 
+
+                var LabelKPI  = data.labels; 
+                var seriesKPI = data.series; 
+                var question  = data.question;
+
+                var labelval = [];
+                var seriesval = [];
+                var lbl, srs;
+
+// console.log(LabelKPI );
+console.log(seriesKPI);
+// console.log(question );
+                LabelKPI.forEach(function(el, row){
+                    label = LabelKPI[row].labels;
+                    labelval.push(label);
+
+                });
+
+                seriesKPI.forEach(function(el, idx){
+                    srs = seriesKPI[idx];
+                    seriesval.push(srs);
+                }); 
+
+
+                console.log(seriesval);
+ 
+                // var sr = '5, 4, 3, 7, 5, 10, 3'
+                var series= seriesval;
+                var obj=labelval;
+                var counter=0;
+                var projectquestions="";
+                
+                //Draw the graph [ THE BAR CHART ]
+                new Chartist.Bar('#chartist-bar', {
+                    labels: labelval,
+                    series: seriesval
+                    } 
+                    , {
+                    axisX: {
+                        // On the x-axis start means top and end means bottom
+                        position: 'end'
+                    },
+                    axisY: {
+                        // On the y-axis start means left and end means right
+                        position: 'start'
+                    }
+                }); 
+
+                //   new Chartist.Bar('#chart2', {labels: obj, series: series} );
+                //draw THE GRAPH [ PIE CHART]
+                var data = {
+                    labels: labelval,
+                    // series: [20, 15, 40]
+                    series: seriesval
+                  };
+                  
+                  var options = {
+                    labelInterpolationFnc: function(value) {
+                      return value[0]
+                    }
+                    ,showGridBackground: true 
+                    ,plugins: [
+                        Chartist.plugins.legend()
+                    ]
+
+                    // labelInterpolationFnc: Chartist.noop,
+                  };
+                  
+                  var responsiveOptions = [
+                    ['screen and (min-width: 640px)', {
+                      chartPadding: 20,
+                      labelOffset: 10,
+                      labelDirection: 'explode',
+                      labelInterpolationFnc: function(value) {
+                        return value;
+                      }
+                    }],
+                    ['screen and (min-width: 1024px)', {
+                      labelOffset: 10,
+                      chartPadding: 20
+                    }]
+                  ];
+                  
+                  new Chartist.Pie('#chartist-pie', data, options, responsiveOptions);
+
+                $('#question').html(question);
+                
+            },
+            error: function(data){
+                alert("E: "+data);
+            },
+            datatype: "text"
+        }) 
+    }
+
+    var getQuestions = (code) => {
+        // alert(code)
+        var x = $("#uid").html(); 
+        $.ajax({ 
+            url: "/getquestions",
+            method:"GET",
+            data: "projectid="+code,
+
+            // data: JSON.stringify(data),
+            // data: "usermail="+usermail+"&project="+project ,
+            cache: false,
+            success: function(data){ 
+                var questions = data.questions; //var obj={questions:results, options: result};
+
+                var counter=0;
+                var projectquestions = '<option value ="0">Please select a question...</option>'; 
+
+                questions.forEach(function(el, index){
+                    // <option value = "0" > Please, select a Question... </option>                        
+                    projectquestions += '<option value ="' + questions[index].refnos + '">'+ questions[index].question +'</option>'; 
+                   
+                    counter++;
+
+                });
+
+                // console.log(projectquestions)
+
+                $("#questions").html(projectquestions);
+
+            },
+            error: function(data){
+                alert("E: "+data);
+            },
+            datatype: "text"
+        })
+
+    }
+
+</script>
+</body>
+</html>

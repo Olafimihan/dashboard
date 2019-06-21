@@ -1,0 +1,74 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="../public/js/jquery-3.3.1.js" ></script>
+        
+        <script type="text/javascript" >
+            window.onload = function () {
+    
+                if (window.jQuery) {  
+                    
+                    
+                } else {
+                    
+                    alert("Doesn't Work");
+                }
+    
+                var usermail = localStorage.getItem("surveyusermail");
+                alert('NAVBAR: '+usermail)
+                    $("#usermail").val(usermail);
+                    
+            }
+        </script>
+    </head> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" ></script> -->
+
+    
+    <!-- views/partials/nav.ejs -->
+
+    <!-- <body> -->
+
+        
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: black; color: white; font-size: 18px; font-family: verdana; font-weight: bolder" >
+            <div class="container">
+                
+                <input type="hidden" id='usermail' name='usermail' >
+
+                <div class="navbar-header">
+                    <!-- <img src="../img/logo.jpg" alt="pic" width="150" height="150" > -->
+                    <a class="navbar-brand" href="/">
+                        <span class="glyphicon glyphicon"></span>
+                        
+                    </a>
+                </div>
+                <% if( typeof usermail != "undefined"){ %> 
+                
+                    <ul class="nav navbar-nav pull-right pull-left"> 
+
+                        <!-- <li>                        
+                            <a href="/newuser">Setup Users </a>
+                        </li> -->
+
+                        <li><a href="/myprojects?usermail= <%= usermail %>" >Setup Programs </a></li>
+                        <li><a href="/newquestion?usermail= <%= usermail %>"> Setup Questions </a></li>
+                        <li><a href="/rawresponse?usermail= <%= usermail %>"  > Raw Responses </a></li>
+                        <li><a href="/graphresponse?usermail=<%= usermail %>">Graph Responses </a></li>
+                        <li><a href="/about?usermail=<%= usermail %>">About Us </a></li> 
+
+                        <!-- <li><a href="/about">About</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/about">About</a></li>-->
+
+                    </ul>    
+                    
+                <% } %>
+
+            </div>
+        </nav>
+    <!-- </body>
+
+</html> -->

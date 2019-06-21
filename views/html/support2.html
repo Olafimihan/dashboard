@@ -1,0 +1,126 @@
+
+
+
+
+
+
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- ========== Css Files ========== -->
+    <link href="css/root.css" rel="stylesheet">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+    <script src="js/socket.js" ></script>
+
+    <title>Support</title>
+
+</head>
+<body>
+    <div class="content" >
+        <!-- <div class="container-widgets" style="background-color: tan" > -->
+            <!-- <div class="row" > -->
+                <!-- <div class="col-md-12 col-lg-12" > -->
+                    <div class="panel"  style="margin-top: 0px">
+                        <div class="panel-title" >
+                            <h3 style="text-align: center; background-color: grey; color: whitesmoke">Support Tickets</h3>
+                            <input type="hidden" id="usermail" >
+                        </div>
+                        <div class="panel-body" style="background-color: whitesmoked">
+
+                                <div class="row col-md-5" style="background-color: burlywood; color: black">
+                                    <div id="nticket" class="table table-responsive">
+                                        <div class="form-group col-md-12">
+                                            <label for="title">Ticket Title</label>
+                                            <input type="text" class="form-control col-md-7" id="title" required/>                     
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="issue">Issue Description</label>
+                                            <textarea name="issue" id="issue" cols="50" rows="5"></textarea>
+                                        </div> 
+                                    </div>
+
+                                    <button class="btn btn-success" type="button" id="save" onclick="submitTicket()">Submit</button>
+                                    <button class="btn btn-primary" type="button" onclick="window.location='menu.jsp'" >Close</button>
+
+                                </div>
+
+                                <div class="row col-md-7 pull-right" style="background-color: cadetblue; color: black; height: 300px; margin-top: 0px" >
+                                    <h3 style="text-align: center" > Your Ticket Status.</h3>
+                                    <div id="ticket" class="table table-hover" style="float: left; width: 100%; margin-top: 0px; font-size: 12px">
+
+                                    </div>
+        
+                                </div>
+
+                            </div>
+
+                    </div>
+
+                <!-- </div> -->
+
+            <!-- </div> -->
+
+        <!-- </div> -->
+
+    </div>
+
+    <script>
+        $(document).ready(() => {
+            var title=$("#title").val();
+            var issue=$("#issue").val();
+            var user = localStorage.getItem("userid");
+            $("#usermail").val(user);
+
+
+            $.ajax({
+                url: "/gettickets",
+                data: "user="+user,
+                type: "GET",
+                cache: false,
+                success: (data) => {
+                    // alert(data);
+                    $("#ticket").html(data)
+                },
+                error: (data) => {
+                    // alert(data);
+                },
+                datatype: "text"
+            })
+        })
+  
+        var submitTicket = ()=> {
+            // alert('dele')
+            var title = $("#title").val();
+            var issue = $("#issue").val();
+            var user  = $("#usermail").val();
+
+            // alert( title);
+            
+            $.ajax({
+                url: "/insertticket",
+                data: "title="+title+"&message="+issue+"&usermail="+user,
+                type: "GET",
+                cache: false,
+                success: (data) => {
+                    // alert(data);
+                    $("#ticket").html(data)
+                },
+                error: (data) => {
+                    alert('Server CALL Error: '+data);
+                },
+                datatype: "text"
+            })
+
+        }
+
+    </script>
+</body>
+</html>
