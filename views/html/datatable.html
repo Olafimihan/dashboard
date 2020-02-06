@@ -7,7 +7,7 @@
     <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
     <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
 
-    <title>Survey - Admin dashboard</title>
+    <title>SurveyPlanet - Admin dashboard</title>
     
     <!-- ========== Css Files ========== -->
     <link href="css/root.css" rel="stylesheet">
@@ -15,7 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
     <link rel="stylesheet" href="css/plugin/sweet-alert/sweet-alert.css">
+    <!-- <link rel="stylesheet" href="dist/css/bootstrap.min.css"> -->
 
+    <link rel="stylesheet" href="css/flickity.css">
+    <!-- <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet"/> -->
+        <link rel="stylesheet" href="css/flickity.min.css" media="screen">
+
+    <!-- <script src="dist/js/bootstrap.min.js"></script> -->
     <script src="js/jquery-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
     <script src="js/socket.js" ></script>
@@ -31,7 +37,7 @@
     <style>
         td, th {
             white-space: nowrap;
-            overflow: hidden;
+            /* overflow: hidden; */
             
                       
         }
@@ -42,8 +48,118 @@
         padding: 50px;
         } */
     </style>
+
+<style type="text/css">
+    body {
+      background: skyblue;
+      /* height: 100%; */
+    }
+
+    .main-carousel {
+      background: whitesmoke;
+      color: #000;
+
+    }
+
+    p {
+      background-color: whitesmoked;
+      width: 100%;
+      /* text-align: left; */
+      margin-left: auto;
+      margin-right: auto; 
+      font-size: 14px;
+      font-weight: bolder;
+      color: #000;
+      text-align: center;
+      justify-content: left;
+      text-justify: auto;
+      margin: 1px;
+      display: inline-block;
+    }
+    
+    .carousel-cell {
+        color: black;
+        /* font-size: px; */
+        
+        width: 100%;
+        height: 500px;
+        overflow: scroll;
+        
+        /* display: flex; */
+        align-items: center;
+
+        margin-right: auto;
+        margin-left: auto; 
+        text-align: center;
+        
+        /* overflow: scroll; */
+        /* background-color: red; */
+        
+        /* font-family: Verdana, Geneva, Tahoma, sans-serif;
+        
+        justify-content: center; */
+    }
+
+    /* .carousel.is-fullscreen .carousel-cell {
+        height: 70%;
+    } */
+
+    h3 {
+        margin: 2px;
+    }
+
+    .flickity-button {
+      background: gray;
+      /* background: peru; */
+    }
+
+    .flickity-button:hover {
+      background: #F90;
+    }
+
+    .flickity-prev-next-button {
+      width: 50px;
+      height: 50px;
+      border-radius: 60px;
+    }
+
+    /* icon color */
+    .flickity-button-icon {
+      fill: white;
+    }
+
+    .flickity-prev-next-button {
+      top: 40px;
+      -webkit-transform: none;
+              transform: none;
+    }
+
+    .flickity-prev-next-button.previous {
+      left: auto;
+      right: 60px;
+    }
+
+    .flickity-prev-next-button.next {
+      right: 10px;
+    }
+
+    /* position outside */
+    /* .flickity-prev-next-button.previous {
+      left: -40px;
+    } */
+
+    /* .flickity-prev-next-button.next {
+      right: -40px;
+    } */
+
+    /* hide disabled button */
+    /* .flickity-button:disabled {
+      display: none;
+    } */
+
+</style>
   </head>
-  <body onload="getdata()">
+  <body onload="getdatas()">
   <!-- Start Page Loading -->
   <div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
   <!-- End Page Loading -->
@@ -68,25 +184,72 @@
 <!-- START SIDEBAR -->
 <div class="sidebar clearfix">
 
-<ul class="sidebar-panel nav">
-    <li class="sidetitle">MAIN</li>
-    <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-home"></i></span>New Project<span class="label label-default">2</span></a></li>
-    <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-pencil"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
-    
-    <li  class='data'><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>Data Tables<span class="caret"></span></a>
-      <ul>
-        <li><a href="datatable.html"><span class="icon color8"><i class="fa fa-database"></i></span>Raw Data</a></li>
-        <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+    <ul class="sidebar-panel nav">
+        <li class="sidetitle" > MAIN </li>
+        
+        <li  class='setup'><a href="#"><span class="icon color9"><i class="fa fa-address-card"></i></span>Setup Module<span class="caret"></span></a>
+          <ul>
+            <li class='newclient'><a href="clients.html"><span class="icon color8"><i class="fa fa-users"></i></span>New Clients</a></li>     
+            <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-puzzle-piece"></i></span>New Project<span class="label label-default">2</span></a></li>
+            <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-question-circle-o"></i></span>New Questionaire<span class="label label-default">19</span></a></li>
+            
+            <li class='newoutlet'><a href="outlet.html"><span class="icon color8"><i class="fa fa-university"></i></span>New Outlets</a></li>     
+            <li class='newkpi'><a href="kpi.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>New KPI</a></li>     
+                  
+            <li class="newsupervisor" ><a href="supervisor.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Supervisors</a></li>
+            <li class="newsupervisor" ><a href="reps.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Clients' Reps.</a></li>
+            <li class='newlogindetail'><a href="users.html"><span class="icon color8"><i class="fa fa-user-secret"></i></span>New Login Details</a></li>
+            <li class='excelmap'><a href="excelmap.html"><span class="icon color8"><i class="fa fa-user-excel"></i></span>Excel Data Mapping</a></li>
+            <li class='excelmap'><a href="querybuilder.html"><span class="icon color8"><i class="fa fa-table"></i></span>Query Builder</a></li>
+          </ul>
+        </li>
+        
+        <li  class='mapping'><a href="#"><span class="icon color9"><i class="fa fa-sitemap"></i></span> Mapping Module<span class="caret"></span></a>
+          
+          <ul>
+              <li class='mapuser_project'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Users => Project </a></li>
+              <li class='mapsuper_project'><a href="mapsuper.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Supervisors => Project </a></li>
+              <li class='mapkpi_project'><a href="kpiproject.html">      <span class="icon color8"><i class="fa fa-minus"></i></span> KPIs => Project </a></li>
+              <li class='mapoutlet_auditor'><a href="outlet_device.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Outlet => Auditor </a></li>
+          </ul>
+      
+        </li>
+      
+      
+        <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Aggregate/Graphical Report <span class="caret"></span></a>
+          <ul class="">
+      
+            <li class='excelmap'><a href="reportbuilder.html"><span class="icon color8"><i class="fa fa-flag-o"></i></span>Report Builder</a></li>
+            
+      
+            <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+            <li><a href="waves.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>Compare waves Data</a></li>
+      
+          </ul>
+        </li>
+      
+        <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Analytics Report <span class="caret"></span></a>
+          <ul class="">
+            <li ><a href="datatable.html"><span class="icon color8 "><i class="fa fa-database" ></i></span>Raw Data</a></li>
+            
+            <li class='userlist'><a href="userslist.html"><span class="icon color8"><i class="fa fa-users"></i></span> My Users List </a></li>     
+            <li class='Supervisorlist'><a href="usersreport.html"><span class="icon color8"><i class="fa fa-eye"></i></span> Supervisors </a></li>     
+            <li class='device'><a href="devices.html"><span class="icon color8"><i class="fa fa-android"></i></span> My Registered Devices </a></li>     
+            <li class='device'><a href="device_tracker.html"><span class="icon color8"><i class="fa fa-android"></i></span> Track Devices </a></li>     
+        
+          </ul>
+        </li>
+      
+        <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
+        
+        <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
+        
+        <li><a href="support.html"><span class="icon color8"><i class="fa fa-life-ring"></i></span>Support Tickets</a></li>     
+        <li><a href="dbsockExcel.html"><span class="icon color8"><i class="fa fa-excel-o" aria-hidden="true"></i></span>Import Excel Data</a></li>     
+        <li><a href="/"><span class="icon color8"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Exit Application</a></li>     
+      
       </ul>
-    </li>
-  
-    <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
-    <li class='users'><a href="users.html"><span class="icon color8"><i class="fa fa-users"></i></span>Setup Clients</a></li>     
-    <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
-    <li class='mapping'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Users to Project </a></li>     
-    <li><a href="support.html"><span class="icon color8"><i class="fa fa-home"></i></span>Support Tickets</a></li>     
-    </ul>
-     
+           
  </div>
 
 
@@ -115,6 +278,7 @@
                 <div class="panel-title" style="background-color: bisque" >
                     <p class='' style="text-align: center; font-size:  20px; background-color: transparent; color: black" > Raw Data From Field. </p>
                     <p class="guest">  </p>
+                
                     <!-- <div class="shadow-lg p-3 mb-5 bg-white rounded">Raw Field Data. </div> -->
                 </div>
                     
@@ -124,15 +288,18 @@
                         <label for="projectid" class="" > Projects </label>
                         <select class="" id="projectid" name="projectid" onchange="getRawData(this.value)">
                                 
-                        </select>                            
+                        </select>    
+                        <p id="counter"></p>                        
                     </div>
 
                     <div class="clearfix col-md-8 no-wrap">
                         <button class="btn btn-primary btn-sm ops" type="button" onclick="rejectdata()" > Reject Selection </button>
                         <button class="btn btn-success btn-sm ops" type="button" onclick="opendata()" > Open Selection </button>
                         <button class="btn btn-danger btn-sm ops2" type="button" onclick="opendata()" > Delete Selection </button>
-                        <button class="btn btn-success btn-sm" type="button" onclick="" > Export Excel </button>
-                        <button class="btn btn-success btn-sm" type="submit" > close </button>
+                        <button class="btn btn-success btn-sm" type="button" onclick="tableToExcel('table', 'Excel Table')" > Export Excel </button>
+                        <!-- <button class="btn btn-primary col-md-12" type="button"  onclick="tableToExcel('table', 'Excel Table')" >Export to Excel</button> -->
+                        
+                        <button class="btn btn-success btn-sm" type="button" onclick="closeDialog()"> close </button>
 
                     </div>
 
@@ -142,7 +309,11 @@
                     
                     </div> -->
 
-                    <div id='result' class="table table-bordered table-responsive d-flex flex-row bd-highlight mb-3"  style='overflow: scroll'  >
+                    <div id='table' class="table table-bordered"  style='overflow: scroll'  >
+
+                        <!-- <table width="70%" id="" class="table-hover">
+                            
+                        </table> -->
 
                     </div>
 
@@ -154,6 +325,59 @@
 
 </div> <!-- End Fifth Row -->
 
+<div class="modal fade" id="pushtodisplay" role="modal" style="width: 1200px">
+    <div class="modal-dialog modal-lg" title="Add expected Options for questions" style="width: 1100px">
+        <div class="modal-content">
+            <input type="hidden" class="refnos" >
+            <input type="hidden" id="quest" >
+            <!-- <input type="hidden" id="currentuser" > -->
+
+            <div class="modal-header" style="padding: 15px 40px; background-color: cadetblue; color: #fff; font-weight: bolder;">
+                <button type="button" class="close" data-dismiss="modal" > &times; </button>
+                <h4 style="color: #fff; text-align: center" ><span>Edit Respondent Questionaire</h4>
+            </div>
+
+            <div class="modal-body" style="height: auto; width: 800px; background-color:white;"> 
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="overflow: scroll;" >
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                          <span class="sr-only"> 100% Complete </span>
+                        </div>
+                    </div>
+
+
+                    <div class="main-carousel responses">
+
+                    </div>
+                    
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+
+                </div>
+                   
+            </div>
+
+            <div class="modal-footer" style="background-color: antiquewhite">
+                <button type="button" class="btn btn-primary btn-group-sm rounded" onclick="saveChoices()" id="pusher" ><i class="fa fa-database" ></i>Submit</button>
+                <button type="button" class="btn btn-danger btn-orange" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!-- END CONTAINER -->
  <!-- //////////////////////////////////////////////////////////////////////////// --> 
 
@@ -164,6 +388,7 @@
 <!-- ================================================
 jQuery Library
 ================================================ -->
+<script src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 
 <!-- ================================================
@@ -184,10 +409,198 @@ Data Tables
 <script src="js/sweet-alert/sweet-alert.min.js"></script>
 
 
+<script src="js/flickity.min.js"></script>
+<script src="js/flickity.fade.js"></script>
+
 
 <script>
     var usermail = localStorage.getItem('userid');
     $('#usermail').val(usermail);
+
+    var check = (id) => {
+        alert('Dele: '+ id);
+    };
+
+    var closeDialog = () => {
+        window.location = 'board.html';
+    };
+
+    var saveChoices = () => {
+        var projectid = $("#projectid").val();
+
+        var resultObj = '[';
+
+        var carsel_Element = document.getElementsByClassName("main-carousel")[0].getElementsByClassName("carousel-cell");
+        var len = carsel_Element.length;
+        console.log(len)
+        var col_typ
+
+        for(var y=0; y < carsel_Element.length; y++) {
+            /** HERE: pick all .chtype class from cls_Element variable and build the json result to be passed*/
+            chtype_Element = carsel_Element[y].getElementsByClassName('chtype');
+
+            // console.log(chtype_Element);
+            // console.log(chtype_Element.length);
+
+
+            // console.log("Y: "+y);
+
+            // chtype_Element.each((index, elm)=>{
+
+            // })
+
+            var len = chtype_Element.length;
+
+            var i=0;
+
+            do {
+                var typ = chtype_Element[i].type;
+                // var nm  = chtype_Element[i].name;
+                var st  = chtype_Element[i].checked;
+
+                // stime     = chtype_Element[i].dataset.arrival;
+                // etime     = chtype_Element[i].dataset.departure;
+                // quest_gps = chtype_Element[i].dataset.location;
+
+                if(typ=="radio") {
+                    if(st) {
+                        answer =  chtype_Element[i].value;
+                        questionid = chtype_Element[i].id;
+                            
+                        resultObj += '{"elm_type": "'+typ+'", "project_id": "'+projectid+'", "question_ref": "'+questionid+'", "answer": "'+answer+'"  }, ';
+                    }
+
+                }
+                else if( typ=="number") {
+                    // stime = chtype_Element[i].dataset.arrival;
+                    // etime = chtype_Element[i].dataset.departure;
+                    // quest_gps = chtype_Element[i].dataset.location;
+                    
+                    answer =  chtype_Element[i].value;
+                    questionid = chtype_Element[i].id;
+
+                    resultObj += '{"elm_type": "'+typ+'", "project_id": "'+projectid+'", "question_ref": "'+questionid+'", "answer": "'+answer+'"  }, ';
+
+                }
+                else if(typ=="text") 
+                {
+                    // stime     = chtype_Element[i].dataset.arrival;
+                    // etime     = chtype_Element[i].dataset.departure;
+                    // quest_gps = chtype_Element[i].dataset.location;
+                    answer    =  chtype_Element[i].value;
+                    questionid = chtype_Element[i].id;
+
+                    resultObj += '{"elm_type": "'+typ+'", "project_id": "'+projectid+'", "question_ref": "'+questionid+'", "answer": "'+answer+'"  }, ';
+
+                }
+                else if(typ=="image" ) { //images
+                    // var src_name, src_Id;
+                    // // stime = chtype_Element[i].dataset.arrival;
+                    // // etime = chtype_Element[i].dataset.departure;
+                    // // quest_gps = chtype_Element[i].dataset.location;
+
+                    // for(var q=0; q<=chtype_Element.length - 1; q++){
+                    //     src_Id = chtype_Element[q].id;
+
+                    //     if(src_Id=='myImage'){
+                    //         src_name = chtype_Element[q].src;
+                    //     }
+
+                    // }
+
+                    // answer =  src_name;
+                    // questionid = chtype_Element[i].id;
+
+                    // resultObj += '{"elm_type": "'+typ+'", "project_id": "'+projectid+'", "question_ref": "'+questionid+'", "answer": "'+answer+'"  }, ';
+                
+                }
+                else if(typ=="checkbox") {
+                    // stime = chtype_Element[i].dataset.arrival;
+                    // etime = chtype_Element[i].dataset.departure;
+                    // quest_gps = chtype_Element[i].dataset.location;
+                    
+                    questionid = chtype_Element[i].name;
+                    var cst, chst;
+                    let chkbox = document.getElementsByName(questionid);
+
+                    var ans="";
+
+                    for(var x = 0; x < chkbox.length; x++){
+                        cst = chkbox[x].value;
+                        chst = chkbox[x].checked
+
+                        if(chst){
+                            ans += cst +', ';
+                        }
+                    }
+
+                    var chkanswer =  chtype_Element[i].value;
+                    answer = ans;
+                    resultObj += '{"elm_type": "'+typ+'", "project_id": "'+projectid+'", "question_ref": "'+questionid+'", "answer": "'+answer+'"  }, ';
+                
+                }
+                else if(typ=='video'){
+                    // var src_name, src_Id;
+
+                    // // stime = chtype_Element[i].dataset.arrival;
+                    // // etime = chtype_Element[i].dataset.departure;
+                    // // quest_gps = chtype_Element[i].dataset.location;
+
+                    // for(var q=0; q<=chtype_Element.length - 1; q++){
+                    //     src_Id = chtype_Element[q].id;
+
+                    //     if(src_Id=='myVideo'){
+                    //         src_name = chtype_Element[q].src;
+
+                    //     }
+
+                    // }
+                    // answer =  src_name;
+                    // questionid = chtype_Element[i].name;
+
+                    // resultObj += '{"elm_type": "'+typ+'", "project_id": "'+projectid+'", "question_ref": "'+questionid+'", "answer": "'+answer+'"  }, ';
+                
+                } //last endif 
+                
+                i++;
+
+            }
+            while (i < len);  /** end the do while loop*/
+        
+        } //carousel-cell loop
+
+        resultObj = resultObj.substring(0, resultObj.lastIndexOf(","));
+      
+        resultObj += ']';
+
+        $.ajax({
+            url: "/saveEditedResponse",
+            type: "POST",
+            cache: false,
+            data: {insertObject: resultObj},
+            dataType: "json",
+            success: (data) => {
+                $('.savebtn').addClass('hidden');
+            
+                swal('HEY!', 'Thanks for sharing with us...', 'success');
+            }, 
+            error: (err) => {
+
+            }
+        });
+
+        // console.log(resultObj);
+        // console.log(JSON.parse(resultObj));
+        // console.log(JSON.parse(resultObj).length);
+
+
+        
+    }
+
+    var getProperty = (prop) => {
+        alert(prop)
+
+    }
 
     var getRawData = (id) => {
         var user = $('#usermail').val();
@@ -200,18 +613,150 @@ Data Tables
             type: "GET",
             cache: false,
             success: function(data){
-                $('#result').html(data);
+                // alert(data)
+                // $('#result').html(data);
+                $('#table').html(data.str);
+                $('#counter').html(data.counter);
+
+                
 
                 console.log(data)
             },
             error: function(data){
                 alert(data);
             },
-            dataType: "text"
+            dataType: "json"
         })
+
+    }
+
+    var sender = ( id, val ) => {
+
+        var destination = 'Q'
+        // alert(id)
+        // alert(val)
+        ''
+
+        $.ajax({
+            url: "/sendJob",
+            data: "id="+id+"&destination="+val,
+            type: "GET",
+            cache: false,
+            success: (data)=>{
+                var ids = $('#projectid').val();
+                getRawData(ids);
+            },
+            error: (err)=>{
+
+            },
+            dataType: "json"
+        })
+    }
+    var accompanied = (id) => {
+        // alert(id)
+        var x = confirm('Are you Sure You Acompanied this survey ???');
+        if(x){
+            var user, dateaccompanied, project_id;
+        
+            user = $("#usermail").val();
+
+            var project_id = $('#projectid').val();
+            $.ajax({
+                url : "/accompaniedjobs",
+                data : "id="+id+"&user="+user+"&project_id="+project_id, 
+                type: "GET",
+                cache: false,
+                success: (data)=>{
+                    console.log(data)
+                    if(data.error !== "empty"){ // ie there is an error message from server
+                        // alert(data.error)
+                        swal('HEY!!!', data.error, 'error')
+                    }else{
+                        swal('HEY!!!', data.result+' Record successfully Inserted...""', 'success')
+                    }
+                    // alert(data.project_id)
+                    // var ids = $('#projectid').val();
+                    // getRawData(data.project_id);
+
+                },
+                error: (err)=>{
+
+                },
+                datatype: "json"
+            })
+
+        }
+        
+    }
+
+    var getClickedData = (id) => {
+        $('.progress').show('slow');
+
+        /** GET the data for the passed id
+         *  introduce the questions table 
+         *  and options table in displaying
+         *  the submitted data.
+         * 
+         *  If there is changes to the data,
+         *  update the changes and log the 
+         *  previous record in the audit trail
+         *  table: TO BE CREATED!
+         */
+         $("#pushtodisplay").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        /** SHow a processing effect to client while getting data */
+
+        $.ajax({
+            url: "/editquestionaire",
+            type: "GET",
+            data: "ref="+id,
+            cache: false,
+            success: function(data) {
+                // alert(data)
+                // $('.responses').html(data);
+                $('.progress').hide('slow');
+
+                $('.main-carousel').html(data.str);
+      
+                $('.main-carousel').flickity({
+                    // options
+                    cellAlign: 'left',
+                    contain: true,
+                    fullscreen: false, 
+                    contain: true, 
+                    pageDots: false, 
+                    prevNextButtons : true,
+                    fade: true
+        
+                }); 
+
+            },
+            error: function(err) {
+
+            },
+            datatype: "JSON"
+        })
+
         
 
     }
+
+    var tableToExcel = (function() {
+
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+        return function(table, name) {
+        if (!table.nodeType) table = document.getElementById(table);
+        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML};
+        window.location.href = uri + base64(format(template, ctx));
+        };
+    })();
+
 
     var opendata = () => {
         var projectid = $("#projectid").val();
@@ -252,22 +797,19 @@ Data Tables
     }
 
     var checker = (id, projectid) => {
+
         var totalRowCount = 0;
-        var rowCount = 0;
-        var table = document.getElementById("example0");
-        var rows = table.getElementsByTagName("tr");
-        
-        // var projectid = $('#projectid').val();
+        var rowCount      = 0;
+        var table         = document.getElementById("example0");
+        var rows          = table.getElementsByTagName("tr");
 
-        // alert($('#projectid').val());
-
-        var charttype = $("#header").is(":checked");
+        var charttype     = $("#header").is(":checked");
         var stat;
 
-        if(charttype){
+        if ( charttype ) {
             $(".rad").prop("checked", true);
             stat=1;
-        }else{
+        } else {
             $(".rad").prop("checked", false);
             stat=0;
         };
@@ -298,6 +840,7 @@ Data Tables
         // message += "\nRow Count: " + rowCount;
         
     }
+
     var checkersingleton = (id, refcode) => {
         var totalRowCount = 0;
         var rowCount = 0;
@@ -309,13 +852,12 @@ Data Tables
         // alert($('#projectid').val());
 
         var charttype = $("#"+id).is(":checked");
-        var stat;
-// alert(charttype)
+        var stat; 
 
-        if(charttype){
+        if ( charttype ) {
             $("#"+id).prop("checked", true);
             stat=1;
-        }else{
+        } else {
             $("#"+id).prop("checked", false);
             stat=0;
         };
@@ -377,6 +919,8 @@ Data Tables
         var name = localStorage.getItem('name');
         var user = localStorage.getItem('userid');
         var role = localStorage.getItem('roleId');
+
+        $('.progress').show('slow')
 
         $('.guest').html("<strong style='font-size: 20' >Welcome, "+ name+" </strong>");
         
@@ -451,42 +995,44 @@ Data Tables
 
 
 <script>
-$(document).ready(function() {
-    var table = $('#example').DataTable({
-        "columnDefs": [
-            { "visible": false, "targets": 2 }
-        ],
-        "order": [[ 2, 'asc' ]],
-        "displayLength": 25,
-        "drawCallback": function ( settings ) {
-            var api = this.api();
-            var rows = api.rows( {page:'current'} ).nodes();
-            var last=null;
- 
-            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
-                if ( last !== group ) {
-                    $(rows).eq( i ).before(
-                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
-                    );
- 
-                    last = group;
-                }
-            } );
-        }
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            "columnDefs": [
+                { "visible": false, "targets": 2 }
+            ],
+            "order": [[ 2, 'asc' ]],
+            "displayLength": 25,
+            "drawCallback": function ( settings ) {
+                var api = this.api();
+                var rows = api.rows( {page:'current'} ).nodes();
+                var last=null;
+    
+                api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                    if ( last !== group ) {
+                        $(rows).eq( i ).before(
+                            '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                        );
+    
+                        last = group;
+                    }
+                } );
+            }
+        } );
+    
+        // Order by the grouping
+        $('#example tbody').on( 'click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+                table.order( [ 2, 'desc' ] ).draw();
+            }
+            else {
+                table.order( [ 2, 'asc' ] ).draw();
+            }
+        } );
     } );
- 
-    // Order by the grouping
-    $('#example tbody').on( 'click', 'tr.group', function () {
-        var currentOrder = table.order()[0];
-        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
-            table.order( [ 2, 'desc' ] ).draw();
-        }
-        else {
-            table.order( [ 2, 'asc' ] ).draw();
-        }
-    } );
-} );
 </script>
+
+
 
 
 

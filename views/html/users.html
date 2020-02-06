@@ -46,7 +46,7 @@
             <div class="row" >
                 <div class="panel col-md-12">
                     <div class="panel-header">
-                        <h2 style="text-align: center; background-color: antiquewhite">Setup Mobile Users</h2>
+                        <h2 style="text-align: center; background-color: antiquewhite">Setup New Login Details</h2>
 
                     </div>
                     <form action="/board.html" method="GET">
@@ -58,21 +58,29 @@
                                     <label class="col-md-4" for="name">User Name</label>
                                     <input class="col-md-8 form-control" autocomplete="off" type="text" name="name" id="name">
                                 </div>
-                                <div class="col-md-12 form-group">
+                                <!-- <div class="col-md-12 form-group">
                                     <label class="col-md-4" for="name">Telephone No.</label>
                                     <input class="col-md-8 form-control" autocomplete="off" type="text" name="phone" id="phone">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="col-md-4" for="name"> Email</label>
                                     <input class="col-md-8 form-control" autocomplete="off" type="text" name="email" id="email">
+                                </div> -->
+                                
+                                <div class="col-md-12 form-group">
+                                    <label class="col-md-4" for="name"> Password</label>
+                                    <input class="col-md-8 form-control" autocomplete="off" type="password" name="password" id="password">
                                 </div>
                                 
                                 <div class="col-md-12 form-group">
                                     <label class="col-md-4" for="name"> Access Level</label>
                                     <select class="col-md-8 form-control" name="access" id="access">
                                         <option value="0">Please, select access level...</option>
+                                        <option value="executive">Executives</option>
                                         <option value="client">Client</option>
-                                        <option value="manager">Field Manager</option>
+                                        <option value="manager">Field Supervisor</option>
+                                        <option value="qa">QA Managers</option>
+                                        <option value="pm">Project Managers</option>
                                         <option value="device">Field Device</option>
                                     </select>
                                 </div>
@@ -138,15 +146,16 @@
         var savedata = () => {
             var user = $('#user').val();
             var name = $('#name').val();
-            var email = $('#email').val();
-            var phone = $('#phone').val();
+            var email = 'AA'; //$('#email').val();
+            var phone = '234'; //$('#phone').val();
             // var imei = $('#imei').val();
             var access = $('#access').val();
+            var pass = $('#password').val();
 
             $.ajax({
-                url: "/createdevice",
+                url: "/createusers",
                 method: "GET",
-                data: "user="+user+"&name="+name+"&email="+email+"&phone="+phone+"&access="+access,
+                data: "user="+user+"&name="+name+"&email="+email+"&phone="+phone+"&access="+access+"&pass="+pass,
                 cache: false,
                 success: (data)=>{
                     if(data=='success'){

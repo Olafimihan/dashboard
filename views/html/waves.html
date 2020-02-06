@@ -1,0 +1,651 @@
+<!DOCTYPE html >
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+  <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+  <title>Surveys - Admin dashboard</title>
+
+  <!-- ========== Css Files ========== -->
+  <link href="css/root.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+  <link rel="stylesheet" href="css/plugin/sweet-alert/sweet-alert.css">
+
+  <script src="js/jquery-3.3.1.js"></script>
+
+  <script type="text/javascript" src="js/easypiechart/easypiechart.js"></script>
+
+  <script src="js/plotly-latest.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+  <script src="js/socket.js" ></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+  <link href="https://playground.anychart.com/docs/samples/BCT_Stacking_01/iframe" rel="canonical">
+  
+  <meta content="Bar Chart,Column Chart" name="keywords">
+  <meta content="AnyChart - JavaScript Charts designed to be embedded and integrated" name="description">
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+  <link href="https://cdn.anychart.com/releases/8.7.0/css/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4" rel="stylesheet" type="text/css">
+  
+  <script src="js/highcharts.js"></script>
+
+  <style>
+  html, body, #container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  </style>
+  <style>
+      /* .ct-chart .ct-perfect-fourth,
+          .ct-charrt .ct-perfect-fourth {
+              stroke: blue;
+          } */
+
+      .panel-title {
+          text-align: center;
+          font-size: 20px;
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+          background-color: bisque;
+          color: black;
+      }    
+  
+      .panel-footer {
+          text-align: center;
+          font-size: 18px;
+          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+          background-color: grey;
+          color: whitesmoke;
+          font-weight: bolder;
+      }    
+  
+  </style>
+  
+  </head>
+  <body>
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+  <!-- START TOP -->
+  <div id="top" class="clearfix">
+
+    <!-- Start App Logo -->
+    <div class="applogo">
+      <a href="index.html" class="logo">Survey</a>
+    </div>
+    <!-- End App Logo -->
+ 
+     
+  </div>
+    <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+    <ul class="sidebar-panel nav">
+        <li class="sidetitle">MAIN</li>
+        
+        <li  class='setup'><a href="#"><span class="icon color9"><i class="fa fa-address-card"></i></span>Setup Module<span class="caret"></span></a>
+          <ul>
+              <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-puzzle-piece"></i></span>New Project<span class="label label-default">2</span></a></li>
+              <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-question-circle-o"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
+              
+              <li class='newclient'><a href="clients.html"><span class="icon color8"><i class="fa fa-users"></i></span>New Clients</a></li>     
+              <li class='newoutlet'><a href="outlet.html"><span class="icon color8"><i class="fa fa-university"></i></span>New Outlets</a></li>     
+              <li class='newkpi'><a href="kpi.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>New KPI</a></li>     
+                   
+              <li class="newsupervisor" ><a href="supervisor.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Supervisors</a></li>
+              <li class='newlogindetail'><a href="users.html"><span class="icon color8"><i class="fa fa-user-secret"></i></span>New Login Details</a></li>
+      
+          </ul>
+        </li>
+        
+        <li  class='mapping'><a href="#"><span class="icon color9"><i class="fa fa-sitemap"></i></span> Mapping Module<span class="caret"></span></a>
+          
+          <ul>
+              <li class='mapuser_project'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Users => Project </a></li>
+              <li class='mapsuper_project'><a href="mapsuper.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Supervisors => Project </a></li>
+              <li class='mapkpi_project'><a href="kpiproject.html">      <span class="icon color8"><i class="fa fa-minus"></i></span> KPIs => Project </a></li>
+              <li class='mapoutlet_auditor'><a href="outlet_device.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Outlet => Auditor </a></li>
+          </ul>
+      
+        </li>
+      
+        <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Report Module<span class="caret"></span></a>
+          <ul class="">
+            <li style="" ><a href="datatable.html"><span class="icon color8 "><i class="fa fa-database" style=""></i></span>Raw Data</a></li>
+            <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+            <li><a href="param.html"><span class="icon color8"><i class="fa fa-bar-bar"></i></span>Parameterized Data</a></li>
+      
+            <li class='userlist'><a href="userslist.html"><span class="icon color8"><i class="fa fa-users"></i></span> My Users List </a></li>     
+            <li class='Supervisorlist'><a href="usersreport.html"><span class="icon color8"><i class="fa fa-eye"></i></span> Supervisors </a></li>     
+            <li class='device'><a href="devices.html"><span class="icon color8"><i class="fa fa-android"></i></span> My Registered Devices </a></li>     
+            <li class='device'><a href="device_tracker.html"><span class="icon color8"><i class="fa fa-android"></i></span> Track Devices </a></li>     
+        
+          </ul>
+        </li>
+      
+        <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
+        
+        <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
+        
+        <li><a href="support.html"><span class="icon color8"><i class="fa fa-life-ring"></i></span>Support Tickets</a></li>     
+        <li><a href="dbsockExcel.html"><span class="icon color8"><i class="fa fa-address-book" aria-hidden="true"></i></span>Import Excel Data</a></li>     
+      
+      </ul>
+        
+</div>
+<!-- END SIDEBAR -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTENT -->
+<div class="content">
+   
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTAINER -->
+<div class="container-default" >
+
+  <div class="panel ">
+    <div class="panel-header">
+
+      <div class="col-md-6">
+          <label  class="col-md-2" for="projectid">Select Project</label>
+          <select class="col-md-7" id="projectid" name="projectid" onchange="getQuestions(this.value)" ></select>    
+      </div>
+      
+      <div class="col-md-6">
+          <label class="col-md-2" for="questions" class="">Select Question</label>
+          <select class="col-md-7" name="questions" id="questions" onchange="getQuestionOptions(this.value)">
+          
+          </select>    
+
+          <!-- <input type="text"> -->
+      </div>
+      
+      <div class="col-md-6">
+          <label class="col-md-2" for="waves"> Enter Waves:</label>
+          <input class="col-md-7" type="text" name="waves" id="waves" onblur="insertwave()" placeholder="Enter waves to compare (, delimeted)" size="20">    
+      </div>
+      
+      <div class="col-md-6" >
+          <button class="btn btn-primary " type="button" onclick="getwavedata()"  ><i class="fa fa-database" >Filter</i></button>
+          <button class="btn btn-primary " type="button" onclick="wave()"  ><i class="fa fa-database" >Filter 2</i></button>
+          <button class="btn btn-success " type="button"><i class="fa fa-window-close-o" aria-hidden="true">Close</i></button>    
+          <button class="btn btn-success btn-sm" type="button" onclick="closeDialog()"> close </button>
+
+        </div>
+
+    </div>
+    
+    <div class="panel-body answer" > 
+      <div id="myDiv" >
+
+      </div>
+
+      <div id="container"></div>
+  
+    </div>
+
+  </div>
+  
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</div>
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Start Footer -->
+<div class="row footer">
+  <div class="col-md-6 text-left">
+  Copyright © 2019 <a href="http://themeforest.net/user/egemem/portfolio" target="_blank">DELAF</a> All rights reserved.
+  </div>
+  <div class="col-md-6 text-right">
+    Design and Developed by <a href="http://themeforest.net/user/egemem/portfolio" target="_blank">Delaf Systems Company.</a>
+  </div> 
+</div>
+<!-- End Footer -->
+
+</div>
+<!-- End Content -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START SIDEPANEL -->
+<div role="tabpanel" class="sidepanel" >
+
+   <!-- Tab panes -->
+  <div class="tab-content">
+
+    <!-- Start Today -->
+    <div role="tabpanel" class="tab-pane active" id="today">
+
+    </div>
+    <!-- End Today -->
+ 
+    <!-- End Chat -->
+
+  </div>
+
+</div>
+<!-- END SIDEPANEL -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- ================================================
+jQuery Library
+================================================ -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+================================================ -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+================================================ -->
+<script type="text/javascript" src="js/plugins.js"></script>
+
+<!-- ================================================
+Data Tables
+================================================ -->
+<script src="js/datatables/datatables.min.js"></script>
+
+<script src="js/sweet-alert/sweet-alert.min.js"></script>
+
+  <script>
+    var question_options=[];
+
+    var getQuestionOptions = (qid) => {
+      $.ajax({
+        url: "/questionoptions",
+        data: "qid="+qid,
+        type: "GET",
+        cache: false,
+        dataType: "JSON",
+        success: (data) => {
+          // keep the question options
+          // console.log(data);
+          // console.log(data.options.length);
+          localStorage.setItem('opt', JSON.stringify(data.options));
+          
+
+        },
+        error: (err) => {
+          alert(err);
+        }
+      })
+      
+
+    }
+
+    var insertwave = () => {
+      var waves = $("#waves").val(); 
+      var user=localStorage.getItem('user');
+
+      var outObj = {
+        waves: waves,
+        user: user
+      };
+
+      $.ajax({
+        url: "/insertwaves",
+        data: {reportparam: outObj},
+        type: "GET",
+        cache: false,
+        dataType: "JSON",
+        success: (data) => { 
+          if(data.msg=='done!'){
+            // alert(data.msg);
+            $('#filter').attr('enabled', true);
+          }
+
+        },
+        error: (err) => {
+          // alert(err);
+        }
+      })
+      
+    }
+
+    var getwavedata =  () => {
+      var projectid = $("#projectid").val();
+      var waves = $("#waves").val();
+      var questionid = $("#questions").val(); 
+
+      var user=localStorage.getItem('user');
+
+      var opt = JSON.parse(localStorage.getItem('opt'));
+      // console.log(opt);
+      // console.log(JSON.parse(opt.length));
+
+      var opt_length = JSON.parse(opt.length);
+       
+        var outObj = {
+          project: projectid,
+          question: questionid,
+          waves: waves,
+          user: user
+          // option: resp_text
+          
+        };
+
+        $.ajax({
+          // url: "http://localhost:8080/surveychartAPI/surveychart?", //CALL external API
+          // url: "http://75.127.75.161/surveychartAPI/surveychart?", //CALL external API
+          url: "/wavescompare", //CALL external API
+          data: "project="+projectid+"&question="+questionid+"&waves="+waves+"&user="+user,
+          // data: {reportparam: outObj},
+          type: "get",
+          cache: false,
+          dataType: "json",
+          success: (data) => {
+            drawBarGroupChart(data.resp);
+            
+          },
+          error: (err) => {
+            // alert(err);
+          }
+        });
+      
+    // }
+
+  }; // end getwavedata method
+  
+  var wave = () => {
+    var projectid = $("#projectid").val();
+    var waves = $("#waves").val();
+    var questionid = $("#questions").val(); 
+
+    var user=localStorage.getItem('user');
+    var opt = JSON.parse(localStorage.getItem('opt'));
+    var opt_length = JSON.parse(opt.length);
+       
+    var outObj = {
+      project: projectid,
+      question: questionid,
+      waves: waves,
+      user: user
+      // option: resp_text
+      
+    };
+
+    $.ajax({
+      // url: "http://localhost:8080/surveychartAPI/surveychart?", //CALL external API
+      // url: "http://75.127.75.161/surveychartAPI/surveychart?", //CALL external API
+      url: "/wavecompareoptionlegend", //CALL external API
+      data: "project="+projectid+"&question="+questionid+"&waves="+waves+"&user="+user,
+      // data: {reportparam: outObj},
+      type: "get",
+      cache: false,
+      dataType: "json",
+      success: (data) => {
+        drawBarGroupChart(data.resp);
+        
+      },
+      error: (err) => {
+        // alert(err);
+      }
+    });
+      
+  }
+
+  var getwavedata2 =  () => {
+    var projectid = $("#projectid").val();
+    var waves = $("#waves").val();
+    var questionid = $("#questions").val(); 
+
+    var user=localStorage.getItem('user');
+
+    var opt = JSON.parse(localStorage.getItem('opt')); 
+
+    var opt_length = JSON.parse(opt.length);
+
+    var outObj = {
+      project: projectid,
+      question: questionid,
+      waves: waves,
+      user: user
+      // option: resp_text
+      
+    }
+    alert(project)
+
+    $.ajax({
+      // url: "http://localhost:8080/surveychartAPI/surveychart?", //CALL external API
+      // url: "http://75.127.75.161/surveychartAPI/surveychart?", //CALL external API
+      url: "/wavecompareoptionlegend", //CALL external API
+      data: "project="+projectid+"&question="+questionid+"&waves="+waves+"&user="+user,
+      // data: {reportparam: outObj},
+      type: "GET",
+      cache: false,
+      dataType: "json",
+      success: (data) => {
+        drawBarGroupChart(data.resp);
+        
+      },
+      error: (err) => {
+        // alert(err);
+      }
+    });
+    
+  // }
+
+  }; // end getwavedata method
+
+  var drawBarGroupChart = (datas) => {
+    // console.log(datas);
+    
+    var layout = {barmode: 'stacked'};
+
+    Plotly.newPlot('container', datas, layout);
+    // Plotly.newPlot('myDiv', datas, layout);
+
+
+  }
+  var closeDialog = () => {
+        window.location = 'board.html';
+    };
+  
+  var drawGraphTable = (data) => {
+
+    console.log(data);
+    var resultData = data; 
+    // pure html in a string to render the returned result.
+    var $htmlString = "";
+    var $res_anchor = $('#answer');
+
+    $htmlString += "<div class='col-md-12' >";
+    $htmlString += "<div class='panel panel-default pie' >";
+    $htmlString += "<div class='panel-title' >Wave # : "+ data.wave[0] +"</div>";
+    $htmlString += "<div class='panel-title' ><p style='font-size: 10px'>"+ data.question[0] +"</p></div>";
+    $htmlString += "<div class='panel-body' >";
+    // $htmlString += "<div class='pull-left' id='id' ></div>";
+    $htmlString += "<div class='pull-left' id="+ data.wave[0] +" ></div>";
+
+    $htmlString += "<div >"; // write the Table Analysis here
+    $htmlString += "<table class='table table-hover' id='ptbl'+"+ data.wave[0] +" >";
+    $htmlString += "<tr style='background-color: #ffcccc; color: black; font-size: 14px; font-weight: bolder'><td>S/N</td><td>KPI</td><td>Frequency</td>";
+    var j=0;
+
+    for (var k=0; k < data.labels.length; k++) {
+        j++;
+        $htmlString += "<tr><td>"+ ((+k) + (+1)) +"</td><td>"+ data.labels[k] +"</td><td>"+ data.series[k] +"</td></tr>";
+    }
+
+    // $htmlString += str;
+    // $htmlString += "<tr style='background-color: #ffcccc; color: black'><td colspan='3'>End Of Wave #: "+ data.wave[0] +"</td>";
+    $htmlString += "</table>";
+
+    $htmlString += "</div>"; // table tag
+    $htmlString += "</div>"; // body tag
+    $htmlString += "<div class='panel-footer' >End Of Wave # : "+ data.wave[0] +"</div>";
+    $htmlString += "</div>"; // footer tag
+    $htmlString += "</div>"; // panel tag
+    $htmlString += "</div>"; // main div tag
+
+    // console.log($htmlString)
+
+    $('#answer').append($htmlString)
+
+    // write data to graph plotter
+    var LabelKPI  = data.labels; 
+    var seriesKPI = data.series; 
+    // var question  = data.question;
+
+    // console.log(resultData);
+    // console.log(LabelKPI);
+    // console.log(seriesKPI);
+
+
+    var dataval = [{
+        values: seriesKPI,
+        labels: LabelKPI,
+        type: 'pie'
+    }];
+
+
+
+    var layout = {
+        height: 400,
+        width: 600
+    };
+
+    var id = data.wave[0];
+    // console.log(id)
+
+    Plotly.newPlot(data.wave[0], dataval, layout);
+
+     
+
+  }
+
+ 
+
+    
+    var getQuestions = (code) => {
+      // alert(code)
+      var x = $("#uid").html(); 
+      $.ajax({
+        url: "/questionsddl",
+        method:"GET",
+        data: "projectid="+code,
+        cache: false,
+        success: function(data) { 
+          $("#questions").html(data);
+
+        },
+        error: function(data) {
+          alert("E: "+data);
+        },
+        datatype: "text"
+      })
+
+    }
+
+    var getQuestionGraphReport = (refcode) => {
+      var charttype  = $('input:radio[name=chart]:checked').val();
+      var role = localStorage.getItem('roleId');
+
+      // alert(charttype);
+      $.ajax({
+          url: "/getquestiongraphdata",
+          method:"GET",
+          data: "questionid="+refcode+"&role="+role,
+          // data: "usermail="+usermail+"&project="+project ,
+          cache: false,
+          success: function(data) {
+            // console.log(data.labels.length);
+        
+            var str = '<table class="table-hover" >';
+            str += "<tr style='background-color: #ffcccc; color: black; font-size: 26px; font-weight: bold' ><thead><td colspan='3'>"+ data.question +"</td></thead></tr>";
+
+            str += "<tr style='background-color: whitesmoked; font-weight: bold'><td>S/N</td><td>KPI</td><td>Frequency</td></tr>";
+            //Build the tabular report
+            var j=0;
+            for(var k=0; k < data.labels.length; k++){
+                j++;
+                str += "<tr><td>"+ j +"</td><td>"+data.labels[k]+"</td><td>"+data.series[k]+"</td></tr>";
+            }
+
+            str += "</table>";
+
+            $('.ptbl').html(str);
+
+            
+            
+            var label; 
+
+            var LabelKPI  = data.labels; 
+            var seriesKPI = data.series; 
+            var question  = data.question;
+
+            var data = [{
+                values: seriesKPI,
+                labels: LabelKPI,
+                type: 'pie'
+            }];
+
+            var layout = {
+                height: 400,
+                width: 600
+            };
+
+            Plotly.newPlot('p', data, layout);
+            ///////////////
+
+              
+            var data = [
+              {
+                x: LabelKPI,
+                y: seriesKPI,
+                type: 'bar',
+                // name: "LabelKPI",
+                marker: {
+                  color: 'rgb(49,130,189)',
+                  opacity: 0.7,
+                }
+              }
+            ];
+
+            Plotly.newPlot('b', data);
+
+            //Question display
+            $('.panel-title').html(question);
+
+            // $('.panel-title').add                    
+          },
+          error: function(data){
+              alert("E: "+data);
+          },
+          datatype: "text"
+      }) 
+    }
+
+
+    $(document).ready(function() {
+      $('#filter').attr('disabled', true);
+        
+    });
+  </script>
+  
+
+  <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script src="https://cdn.anychart.com/releases/8.7.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  
+
+</body>
+</html>

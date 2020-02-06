@@ -4,35 +4,93 @@
 // //jomi, jagunlabi, extra flush
 // 07034809006
 
-var socket = io.connect("http://127.0.0.1:4000"); 
+// var socket = io.connect("http://75.127.75.161:4000"); 
+var socket = io.connect("http://139.162.229.38:4000"); 
+// var socket = io.connect("http://127.0.0.1:4000"); 
 
 $(document).ready(() => {
-    alert('abc');
     var name = localStorage.getItem('name');
     var user = localStorage.getItem('userid');
     var role = localStorage.getItem('roleId');
-    
-    if(role=='client'){
+
+    $('.guest').html("<strong style='font-size: 20' >Welcome, "+ name+" </strong>");
+
+    console.log(name);
+    console.log(user);
+    console.log(role);
+
+    if (role=='client') {
         $('.ops').addClass('hidden');
+        $('.ops2').addClass('hidden');
 
-        $('.newproject').addClass('hidden')
-        $('.questionaire').addClass('hidden')
+        $('.newproject').addClass('hidden');
+        $('.questionaire').addClass('hidden');
         
-        $('.users').addClass('hidden')
-        $('.mapping').addClass('hidden')
+        $('.users').addClass('hidden');
+        $('.mapping').addClass('hidden');
+    } else if(role=='manager') {
+        $('.ops').addClass('hidden');
+        // $('.ops').addClass('hidden');
+        $('.newproject').addClass('hidden');
+        $('.questionaire').addClass('hidden');
 
-    }else if(role=='manager'){
-        $('.newproject').addClass('hidden')
-        $('.questionaire').addClass('hidden')
-
-        $('.users').addClass('hidden')
-        $('.mapping').addClass('hidden')
-
+        $('.users').addClass('hidden');
+        $('.mapping').addClass('hidden');
     }
 
+    $('.alert').hide();
+
+    $('#example0').DataTable();
+    // var user = $('#usermail').val();
+
+    $.ajax({
+        url: "/getprojectslist2",
+        data: "user="+user+"&role="+role,
+        type: "get",
+        cache: false,
+        success: function(data){
+            alert(data)
+            $('#projectid').html(data);
+
+            //get my raw data from clients on the currently runncing project
+            // alert(user)
+            $.ajax({
+                url: "/rawdata",
+                data: "user="+user,
+                type: "GET",
+                cache: false,
+                success: function(data){
+                    $('#result').html(data);
+// alert(data)
+                    // console.log(JSON.stringify(data))
+                },
+                error: function(data){
+                    // alert(data);
+                },
+                dataType: "text"
+            })
+        },
+        error: function(data){
+            // alert(data);
+        },
+        dataType: "text"
+    });
+
+    // socket.emit('rawdata', user);
+
+    // socket.on('data', (resp) => {
+
+    // })
+
+
 })
+
+socket.on('getter', (data)=>{
+    // alert(data)
+});
+
 socket.on('connect', function(){
-    console.log('socket...'+socket);
+    // console.log('socket...'+socket);
 
     socket.emit('phone')
 
@@ -51,16 +109,19 @@ socket.on('connect', function(){
         // $('.tracked').removeClass('hidden');
     });
 
-    socket.on('contact-us', (obj)=>{
+    socket.on('contact-us', (obj) => {
         console.log(obj)
-    })
+    });
+
+    
+    socket.emit('all responses today');
 
     // socket.on('contact-us',)
 
     socket.on('tracked', (trackedresult) => {
         console.log(trackedresult.length);
 
-        if(trackedresult.length > 0){
+        if(trackedresult.length > 0) {
             $('.tracked').removeClass('hidden');           
             var image = trackedresult[0].product_img
             var name  = trackedresult[0].product_name
@@ -79,7 +140,7 @@ socket.on('connect', function(){
 });
 
 
-function displayData(list)
+function displayDatasss(list)
 {
     var datas = list; // $.parseJSON(churchlist);
     var tblcontent="";
@@ -143,7 +204,7 @@ function getList(jsondata){
      
 }
 
-var getQuestionGraphReport = (refcode) => {
+var getQuestionGraphReportss = (refcode) => {
     var charttype  = $('input:radio[name=chart]:checked').val();  
 
     
@@ -287,4 +348,43 @@ var getQuestions = (code) => {
     })
 
 }
+
+var displaydata = () => {
+    // Get the modal
+    var modal = document.getElementById('exp');
+    // Get the button that opens the modal
+//    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+//alert(modal)
+
+//    $('#allocate').attr('disabled', false);
+    modal.style.display = "block";
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    socket.emit('getimported');
+    socket.on('getimported', (resp) => {
+//        alert(resp.str)
+        $("#table").html(resp.str);
+        $("#acct").html(resp.acct);
+        setSelectedIndex(document.getElementById("act"), resp.currentaccount);
+
+    });
+
+};
+
+
 

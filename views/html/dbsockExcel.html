@@ -1,0 +1,271 @@
+
+    
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/root.css" rel="stylesheet">
+        
+        <script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+        <script src="js/sweet-alert.min.js" type="text/javascript"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+        <script src="js/socket.js" ></script>
+        
+    </head>
+    
+    <body>
+        
+        <div>Upload Excel File</div>
+        
+        <div class="content">
+            <div class="container-padding" >
+                <div class="row" >
+                    <div class="col-md-12" >
+                        <div class="panel panel-default" >
+                            <h3><i class="fa fa-upload" >Upload Your Excel File</i></h3>
+                            <h6 id='recs'><i class="fa fa-database"></i></h6>
+                        </div>
+
+                        <div class="panel-body" >
+                            <input type="hidden" id='users' value="<%=users%>" >
+                            
+                            <!--<form action="http://127.0.0.1:2035/uploadfile" method="post" enctype="multipart/form-data" >-->
+                            <form action="http://treschicpro.online:2035/uploadfile" method="post" enctype="multipart/form-data" >
+                                
+                                <div class="form-area">
+                                    <!--<label >Select, Excel File</label>-->
+                                    <input type="file" id="expense" name="excel" >
+                                </div>
+                                
+                                <div class="" >
+                                    <button type="submit" class="btn btn-primary" >Upload</button>
+                                    <button type="button" class="btn btn-primary" onclick="displaydata()">Display data</button>
+                                    <button type="button" class="btn btn-success" onclick="window.location='myHomePage.jsp'" >Close</button>
+                                </div>
+                                
+                            </form >
+                            
+<!--                            <div class="modal-body form-area" style="height: 300px; background-color: #B7B7B7">                                
+                                <div class="form-group col-md-12" id="fileData" style="background-color: transparent; float: left">
+                                    <input type="file" id="files" name="files" onchange="trackInputFile()">                            
+                                    <div  style="background-color: none; float: left; width: 200px; height: 50px"> 
+                                        <p id="upload">
+                                            <button type="button" style="float: left" class="btn btn-success" onclick="uploadFileFromArtistToClient()" ><i class="fa fa-arrow-circle-o-up" ></i>Upload </button>                            
+                                        </p>
+                                        <p id="list"></p>
+                                    </div>   
+                                </div>
+                            </div>-->
+                            
+<!--                            <form name="vcfForm" id="vcfForm" method="post" enctype="multipart/form-data" ></form>
+                            <input type="file" name="excel" id="excel" form="vcfForm" >
+                            <button type="button" name="vcfSubmit" id="vcfSubmit" form="vcfForm">Upload</button>-->
+
+                        </div>
+                        
+                        <div class="panel-footer" >
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="row" >
+                    <div class="modal modal-lg" id="exp" style="width: 850px; height: 650px" role="dialog">
+                        <div class="modal-dialog modal-lg" style="width: 800px; height: 650px; margin-top: 0px" title="Imported Expenses.">
+
+                            <div class="modal-header" style="padding: 15px 40px; background-color: #6F4E37; color: whitesmoke; font-weight: bolder; font-size: 18px">
+                                <span class="close">&times;</span>
+                                <h4 style="text-align: center; font-weight: bolder; font-size: 18px; color: white">Imported Expenses.</h4>
+                            </div>
+
+                            <div class="modal-body col-md-12 col-lg-12" style="height: 600px; background-color: whitesmoke; overflow: scroll">
+                                <div class="col-md-12" id="table">
+
+                                </div>
+                                
+                                <!--<button type="button" class="btn btn-primary col-md-12" onclick="updateClientData()" ><i class="fa fa-database" ></i>Update</button>-->                                
+                            </div>
+
+                            <div class="modal-footer col-md-12" style="background-color: #00acac">
+                                
+<!--                                <button onm type="button" class="btn btn-primary col-md-4" id="allocate" onclick="allocateToArtist()" ><i class="fa fa-database" ></i>Allocate</button>-->
+
+                                <!--<button class="btn btn-secondary btn-round btn-block" data-toggle="modal" data-target=".animate" data-ui-class="a-rotate"	    >Rotate</button>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="modal modal-lg" id="accounts" style="width: 350px; height: 250px" role="dialog">
+                        <div class="modal-dialog modal-lg" style="width: 350px; height: 250px; margin-top: 0px" title="Account Heads.">
+                            <input type="hidden" id="accts" >
+                            <div class="modal-header" style="padding: 5px 20px; background-color: #098ddf; color: whitesmoke; font-weight: bolder; font-size: 18px">
+                                <span class="closed">&times;</span>
+                                <h4 style="text-align: center; font-weight: bolder; font-size: 18px; color: white">Account Heads.</h4>
+                            </div>
+
+                            <div class="modal-body col-md-12 col-lg-12" style="height: 600px; background-color: #0be1ac; overflow: scroll">
+                                <div class="col-md-12">
+                                    <label >Select Account Head</label>
+                                    <select class="form-control" id="acct" name="acct" onchange="mapaccounts(this.value)" >
+                                        
+                                    </select>
+                                </div>
+                                
+                                <!--<button type="button" class="btn btn-primary col-md-12" onclick="updateClientData()" ><i class="fa fa-database" ></i>Update</button>-->                                
+                            </div>
+
+                            <div class="modal-footer col-md-12" style="background-color: #00acac">
+                                
+<!--                                <button onm type="button" class="btn btn-primary col-md-4" id="allocate" onclick="allocateToArtist()" ><i class="fa fa-database" ></i>Allocate</button>-->
+
+                                <!--<button class="btn btn-secondary btn-round btn-block" data-toggle="modal" data-target=".animate" data-ui-class="a-rotate"	    >Rotate</button>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+            </div>
+            
+        </div>
+        
+        
+        <script src="jquery-1.10.2.js" ></script>
+        
+        <script type="text/javascript" >
+            
+            $(document).ready(() => {
+                $.ajax({
+                    url: "/reccordcount",
+                    data: "user=dele",
+                    cache: false,
+                    type: "GET",
+                    success: (data) => {
+                        alert(data)
+                        $('#recs').html(data);
+                    },
+                    error: (err) => {
+                        
+                    },
+                    dataType: "text"
+                })
+            });
+            
+            function trackInputFile(){
+                var file=null;
+                var reader=null;
+
+                var reader = new FileReader();
+                var file = document.getElementById('files').files[0];
+
+                var reader = new FileReader();
+                $("#main").show('slow');
+
+                // Closure to capture the file information.
+                reader.onload = (function(theFile) {
+                  return function(e) {
+                    // Render thumbnail.
+                    var span = document.createElement('span');
+
+                    var nm = theFile.name;
+                    var len= nm.length; 
+
+                    if(len > 50){
+                        swal("Warning",theFile.type+" The File name length cannot be more than 50 letters!!!/n "+theFile.name, "warning");
+                        return;
+                    }
+
+
+//                    if(theFile.type !='image/jpeg' && theFile.type != 'image/gif'){
+//                        swal("Warning",theFile.type+" File type not allowed...JPEG and GIF File type are allowed here!!!", "warning");
+//                        return;
+//            //                    alert('');
+//                    }
+            //                alert(theFile.type);
+    //                        alert(e.target.result);
+
+    //                span.innerHTML = ['<img class="thumb" src="" width="400" height="350" title="'+ escape(theFile.name)+ '"/>'].join(',');
+                    span.innerHTML = ['<img class="thumb" src="'+e.target.result+ '" width="350" height="250" title="'+ escape(theFile.name)+ '"/>'];
+
+                    $("#list").html('<img class="thumb" src="'+e.target.result+ '" width="350" height="250" title="'+ escape(theFile.name)+ '"/>');
+                  };
+                })(file);
+
+                // Read in the image file as a data URL.
+                reader.readAsDataURL(file);
+
+            }
+            
+            function uploadFileFromArtistToClient() {
+                //get filelist object
+                var file = document.getElementById('files').files[0];
+
+                // Open Our formData Object
+                var formData = new FormData();
+
+                // Append our file to the formData object
+                // Notice the first argument "file" and keep it in mind
+
+                var ref   = $("#ref").val();
+                var user  = $("#user").val();
+                var owner = $("#owner").val();
+
+                formData.append('excel', file);
+//                formData.append('ref', ref);
+//                formData.append('user', user);
+//                formData.append('owner', owner);
+
+                // Create our XMLHttpRequest Object
+                var xhr = new XMLHttpRequest();
+
+                // Open our connection using the POST method
+                xhr.open("POST", '127.0.0.1:2035/uploadfile', true);
+
+                // Send the file
+                xhr.send(formData);
+
+                xhr.onload = function(e) {
+                    if (this.status === 200){
+                        swal("Good job!", "Your Image=>"+file.name+" has been successfully uploaded!!!", "success")
+            //                    alert("Dele=>"+this.responseText);
+                    }else{
+            //                    alert("Dayo=>"+this.responseText);
+                    }
+
+                }; 
+            } 
+            
+            $(document).on('click','#vcfSubmit',function() {
+                var data = new FormData();
+                jQuery.each(jQuery('#excel')[0].files, function(i, file) {
+                    data.append('file-'+i, file);
+                });
+                
+                jQuery.ajax({
+                    url: '/http://127.0.0.1:2035/uploadfile',
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    method: 'POST',
+                    type: 'POST', // For jQuery < 1.9
+                    success: function(data) {
+                        alert(data);
+                    }
+                    
+                });
+                
+           });
+           
+        </script>
+    </body>
+</html>

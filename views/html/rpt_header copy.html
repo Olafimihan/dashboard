@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+    <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+
+    <title>SurveyPlanet - Admin dashboard</title>
+    
+    <!-- ========== Css Files ========== -->
+    <link href="css/root.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+    <link rel="stylesheet" href="css/plugin/sweet-alert/sweet-alert.css">
+    <!-- <link rel="stylesheet" href="dist/css/bootstrap.min.css"> -->
+
+    <link rel="stylesheet" href="css/flickity.css">
+    <!-- <link href="https://unpkg.com/flickity@2/dist/flickity.min.css" rel="stylesheet"/> -->
+        <link rel="stylesheet" href="css/flickity.min.css" media="screen">
+
+    <!-- <script src="js/jquery-3.3.1.js"></script> -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="js/easypiechart/easypiechart.js"></script>
+
+    <!-- <script src="dist/js/bootstrap.min.js"></script> -->
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+    <script src="js/socket.js" ></script>
+
+    <script src="js/plotly-latest.min.js"></script>
+
+    <script type="text/javascript" > 
+        
+        $("#alert-target").click(function () {
+            toastr["info"]("I was launched via jQuery!")
+        });
+    
+    </script>
+
+    <style>
+        .ct-chart .ct-perfect-fourth,
+            .ct-charrt .ct-perfect-fourth {
+                stroke: blue;
+            }
+
+        .panel-title {
+            text-align: center;
+            font-size: 20px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: bisque;
+            color: black;
+        }
+
+        td, th {
+            white-space: nowrap;
+            /* overflow: hidden; */
+            
+                      
+        }
+
+        /* @import "compass/css3";
+
+        body{
+        padding: 50px;
+        } */
+    </style>
+
+<style type="text/css">
+    body {
+      background: skyblue;
+      /* height: 100%; */
+    }
+
+    .main-carousel {
+      background: whitesmoke;
+      color: #000;
+
+    }
+
+    p {
+      background-color: whitesmoked;
+      width: 100%;
+      /* text-align: left; */
+      margin-left: auto;
+      margin-right: auto; 
+      font-size: 14px;
+      font-weight: bolder;
+      color: #000;
+      text-align: center;
+      justify-content: left;
+      text-justify: auto;
+      margin: 1px;
+      display: inline-block;
+    }
+    
+    .carousel-cell {
+        color: black;
+        /* font-size: px; */
+        
+        width: 100%;
+        height: 500px;
+        overflow: scroll;
+        
+        /* display: flex; */
+        align-items: center;
+
+        margin-right: auto;
+        margin-left: auto; 
+        text-align: center;
+        
+        /* overflow: scroll; */
+        /* background-color: red; */
+        
+        /* font-family: Verdana, Geneva, Tahoma, sans-serif;
+        
+        justify-content: center; */
+    }
+
+    /* .carousel.is-fullscreen .carousel-cell {
+        height: 70%;
+    } */
+
+    h3 {
+        margin: 2px;
+    }
+
+    .flickity-button {
+      background: gray;
+      /* background: peru; */
+    }
+
+    .flickity-button:hover {
+      background: #F90;
+    }
+
+    .flickity-prev-next-button {
+      width: 50px;
+      height: 50px;
+      border-radius: 60px;
+    }
+
+    /* icon color */
+    .flickity-button-icon {
+      fill: white;
+    }
+
+    .flickity-prev-next-button {
+      top: 40px;
+      -webkit-transform: none;
+              transform: none;
+    }
+
+    .flickity-prev-next-button.previous {
+      left: auto;
+      right: 60px;
+    }
+
+    .flickity-prev-next-button.next {
+      right: 10px;
+    }
+
+    /* position outside */
+    /* .flickity-prev-next-button.previous {
+      left: -40px;
+    } */
+
+    /* .flickity-prev-next-button.next {
+      right: -40px;
+    } */
+
+    /* hide disabled button */
+    /* .flickity-button:disabled {
+      display: none;
+    } */
+
+</style>
+  </head>
+  <body>
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+  <!-- START TOP -->
+  <div id="top" class="clearfix">
+
+    <!-- Start App Logo -->
+    <div class="applogo">
+      <a href="index.html" class="logo">Survey</a>
+    </div>
+    <!-- End App Logo -->
+    <h1 class="text-center" style="color: #fff;"> Report Header Builder </h1>
+
+     
+  </div>
+  <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+
+    <ul class="sidebar-panel nav">
+        <li class="sidetitle" > MAIN </li>
+        
+        <li  class='setup'><a href="#"><span class="icon color9"><i class="fa fa-address-card"></i></span>Setup Module<span class="caret"></span></a>
+          <ul>
+            <li class='newclient'><a href="clients.html"><span class="icon color8"><i class="fa fa-users"></i></span>New Clients</a></li>     
+            <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-puzzle-piece"></i></span>New Project<span class="label label-default">2</span></a></li>
+            <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-question-circle-o"></i></span>New Questionaire<span class="label label-default">19</span></a></li>
+            
+            <li class='newoutlet'><a href="outlet.html"><span class="icon color8"><i class="fa fa-university"></i></span>New Outlets</a></li>     
+            <li class='newkpi'><a href="kpi.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>New KPI</a></li>     
+                  
+            <li class="newsupervisor" ><a href="supervisor.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Supervisors</a></li>
+            <li class="newsupervisor" ><a href="reps.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Clients' Reps.</a></li>
+            <li class='newlogindetail'><a href="users.html"><span class="icon color8"><i class="fa fa-user-secret"></i></span>New Login Details</a></li>
+            <li class='excelmap'><a href="excelmap.html"><span class="icon color8"><i class="fa fa-user-excel"></i></span>Excel Data Mapping</a></li>
+            <li class='excelmap'><a href="querybuilder.html"><span class="icon color8"><i class="fa fa-table"></i></span>Query Builder</a></li>
+          </ul>
+        </li>
+        
+        <li  class='mapping'><a href="#"><span class="icon color9"><i class="fa fa-sitemap"></i></span> Mapping Module<span class="caret"></span></a>
+          
+          <ul>
+              <li class='mapuser_project'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Users => Project </a></li>
+              <li class='mapsuper_project'><a href="mapsuper.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Supervisors => Project </a></li>
+              <li class='mapkpi_project'><a href="kpiproject.html">      <span class="icon color8"><i class="fa fa-minus"></i></span> KPIs => Project </a></li>
+              <li class='mapoutlet_auditor'><a href="outlet_device.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Outlet => Auditor </a></li>
+          </ul>
+      
+        </li>
+      
+      
+        <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Aggregate/Graphical Report <span class="caret"></span></a>
+          <ul class="">
+      
+            <li class='excelmap'><a href="reportbuilder.html"><span class="icon color8"><i class="fa fa-flag-o"></i></span>Report Builder</a></li>
+            
+      
+            <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+            <li><a href="waves.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>Compare waves Data</a></li>
+      
+          </ul>
+        </li>
+      
+        <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Analytics Report <span class="caret"></span></a>
+          <ul class="">
+            <li ><a href="datatable.html"><span class="icon color8 "><i class="fa fa-database" ></i></span>Raw Data</a></li>
+            
+            <li class='userlist'><a href="userslist.html"><span class="icon color8"><i class="fa fa-users"></i></span> My Users List </a></li>     
+            <li class='Supervisorlist'><a href="usersreport.html"><span class="icon color8"><i class="fa fa-eye"></i></span> Supervisors </a></li>     
+            <li class='device'><a href="devices.html"><span class="icon color8"><i class="fa fa-android"></i></span> My Registered Devices </a></li>     
+            <li class='device'><a href="device_tracker.html"><span class="icon color8"><i class="fa fa-android"></i></span> Track Devices </a></li>     
+        
+          </ul>
+        </li>
+      
+        <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
+        
+        <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
+        
+        <li><a href="support.html"><span class="icon color8"><i class="fa fa-life-ring"></i></span>Support Tickets</a></li>     
+        <li><a href="dbsockExcel.html"><span class="icon color8"><i class="fa fa-excel-o" aria-hidden="true"></i></span>Import Excel Data</a></li>     
+        <li><a href="/"><span class="icon color8"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Exit Application</a></li>     
+      
+      </ul>
+           
+ </div>
+
+
+<!-- END SIDEBAR -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTENT -->
+<div class="content">
+
+  
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTAINER -->
+<div class="container-fluid">
+  
+  <!-- Start Fifth Row -->
+  <div class="row">
+
+    <!-- Start Panel -->
+    <div class="" style="">
+        <div id="errmsg" style="height: auto; font-size: 20px; font-weight: bold; text-align: center; color: #f50"></div>
+        <input type="hidden" name="usermail" id="usermail" >
+        <input type="hidden" name="sqlstmt" id="sqlstmt" >
+        <!-- <a class="btn btn-info btn-lg" type="hidden" id="alert-target">Click me!</a> -->
+
+        <div class="panel panel-default" style="background-color: whitesmoke; overflow: scroll">
+                
+            <div class="panel-body" style="background-color: whitesmoke;">
+
+                <div>
+
+
+                </div>
+                <div class="form-group clearfix col-md-12">
+                    <label for="rpt_header" class="col-md-12" > Report Description </label>
+                    
+                    <textarea class="col-md-12" name="rpt_header" id="rpt_header" cols=30" rows="5"></textarea>
+                </div>
+
+
+                <div class="form-group col-md-6">
+                    <label for="param" class="col-md-5" >Parameters</label>
+                    <input type="number" name="param" id="param" autocomplete="off" class="form-control col-md-7" placeholder="No of Parameters...">                            
+                </div>
+
+                <div class="form-group clearfix col-md-12">
+                    <label for="typ" class="" > Type </label>
+                    <select class="" id="typ" name="typ" onchange="">
+                        <option value="pie">Pie Chart</option>
+                        <option value="bar">Bar Chart</option>
+                            
+                    </select>    
+                    
+                </div>
+
+
+              <div class="form-group clearfix col-md-12">
+                <label for="sql" class="col-md-12" > SQL Statement </label>
+                    
+                    <textarea class="col-md-12" name="sql" id="sql" cols=30" rows="5"></textarea>
+            </div>
+
+
+            
+
+            </div>
+            <div class="modal-footer" style="background-color: antiquewhite">
+                <button type="button" class="btn btn-primary btn-group-sm rounded" onclick="saver()" id="retrieve" ><i class="fa fa-flaa-o" ></i>Save Data</button>
+                <button type="button" class="btn btn-danger btn-orange" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Panel --> 
+
+</div> <!-- End Fifth Row -->
+
+<div class="modal fade" id="r_dataview" role="modal" style="width: 1200px">
+    <div class="modal-dialog modal-lg" title="Add expected Options for questions" style="width: 1100px">
+        <div class="modal-content">
+            <input type="hidden" class="refnos" >
+            <input type="hidden" id="quest" >
+            <!-- <input type="hidden" id="currentuser" > -->
+
+            <div class="modal-header" style="padding: 15px 40px; background-color: whitesmoke; color: #fff; font-weight: bolder;">
+                <button type="button" class="close" data-dismiss="modal" > &times; </button>
+                <h4 style="color: #000000; text-align: center;" ><span>Edit Respondent Questionaire</h4>
+            </div>
+
+            <div class="modal-body" style="height: auto; width: 800px; background-color:white;"> 
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="overflow: scroll;" >
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Start first Row -->
+                    <div class="row">
+                        
+                        <!-- Start Chart -->
+
+                        <!-- <div id="tester" style="width:600px;height:250px;">
+                        
+                        </div> -->
+
+                        <div class="col-md-12 p hidden" style="background-color: whitesmoke">
+                            <div class="panel panel-default pie">
+                                <div class="panel-title">
+                                    Simple Pie Chart
+                                </div>
+                                <div class="panel-body">
+                                    <div id="p" class="pull-left" ></div>
+
+                                    <div > 
+                                        <table class="table table-bordered ptbl pull-right">
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                        
+                        <div class="col-md-12 b hidden" style="background-color: whitesmoke">
+                            <div class="panel panel-default pie">
+                                <div class="panel-title">
+                                    Bar Chart
+                                </div>
+                                <div class="panel-body">
+                                    <div id="b" ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Chart -->
+                        
+                        
+
+                
+                    </div> <!-- End First Row -->
+
+
+                     
+
+                </div>
+                   
+            </div>
+
+            <div class="modal-footer" style="background-color: antiquewhite">
+                <button type="button" class="btn btn-primary btn-group-sm rounded" onclick="saveChoices()" id="pusher" ><i class="fa fa-database" ></i>Print</button>
+                <button type="button" class="btn btn-danger btn-orange" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+</div>
+<!-- End Content -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- ================================================
+jQuery Library
+================================================ -->
+<script src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+================================================ -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+================================================ -->
+<script type="text/javascript" src="js/plugins.js"></script>
+
+<!-- ================================================
+Data Tables
+================================================ -->
+
+<script type="text/javascript" src="js/chartist/chartist.js"></script>
+    
+<script src="js/datatables/datatables.min.js"></script>
+
+<script src="js/sweet-alert/sweet-alert.min.js"></script>
+
+
+<script src="js/flickity.min.js"></script>
+<script src="js/flickity.fade.js"></script>
+
+
+<script>
+    var usermail = localStorage.getItem('userid');
+    $('#usermail').val(usermail);
+
+    var check = (id) => {
+        alert('Dele: '+ id);
+    };
+
+    var closeDialog = () => {
+        window.location = 'board.html';
+    };
+
+    var saver = () => {
+        var description = $("#rpt_header").val();
+        var param = $("#param").val();
+        var type = $("#typ").val();
+        var sqlstmt = $("#sql").val();
+        var user = $("#usermail").val();
+
+        var saverObj = {
+            description: description,
+            param: param,
+            type: type,
+            sql: sqlstmt,
+            user: user
+        };
+
+        // console.log(description)
+        // console.log(param)
+        // console.log(type)
+        // console.log(sqlstmt)
+
+
+        $.ajax({
+            url: "/savereportheader",
+            type: "POST",
+            data: {headerObj: JSON.stringify(saverObj)},
+            dataType: "JSON",
+            success: (data)=>{
+                console.log(data)
+
+            },
+            error: (err)=>{
+                console.log(err)
+            }
+        })
+    }
+
+    var retrieve = () => {
+        var paramVal = document.getElementsByClassName("param"); // DOM utilization
+
+        var sqlstmt = $("#sqlstmt").val();
+
+        var data_array = [];
+        var resultObj = '[';
+
+        for (var x = 0; x < paramVal.length; x++){
+
+            var val = paramVal[x].value;
+            // console.log("Value at "+x+": "+val)
+            resultObj += '{"param": "'+val+'", "sql": "'+sqlstmt+'" }, ';
+
+            data_array.push(val);
+        }
+
+        resultObj = resultObj.substring(0, resultObj.lastIndexOf(","));
+      
+        resultObj += ']';
+
+        // console.log(data_array.length)
+        var rendererObj = {param: data_array, sql: sqlstmt }
+
+        // console.log(resultObj)
+        
+
+        $.ajax({
+            url: "/getreportdata",
+            type: "POST",
+            cache: false,
+            data: {paramObj: resultObj},
+            dataType: "JSON",
+            success: (data)=>{
+                console.log(data)
+                console.log(data.result)
+                
+                $("#r_dataview").modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+
+            },
+            error: (err)=>{
+                // console.log(err)
+            },
+            
+        })
+
+        // console.log(data_array)
+
+    }
+     
+    var getreportparameter = (id) => {
+        var user = $('#usermail').val();
+        var role = localStorage.getItem('roleId');
+        // alert(id)
+        // alert(role)
+        $.ajax({
+            url: "/getreportparameter",
+            data: "report="+id+"&role="+role+"&user="+user,
+            type: "GET",
+            cache: false,
+            success: function(data){
+                // console.log(data)
+                // $('#result').html(data);
+                // $('#table').html(data.str);
+                // $('#counter').html(data.counter);
+
+                var tbl = "<table class='table table-bordered' style='background-color: whitesmoke'>";
+                        
+                for(var x = 0; x < data.length; x++){
+                    if(data[x].result=='sel'){
+                        tbl += "<tr><td>"+data[x].label+"</td><td><select class='param' id='param'>"+data[x].ddlb+"</select></td></tr>";  
+                        
+                    } else if(data.result=='txt'){
+                        // tbl += "<tr><td>"+data[x].label+"</td><td><select class='param' id='param'>"+data[x].ddlb+"</select></td></tr>";  
+                    } 
+
+
+                }
+                tbl += "</table>"
+
+
+                $("#sqlstmt").val(data[0].stmt) 
+                $("#param_table").html(tbl) 
+                
+                
+
+                console.log(data);
+            },
+            error: function(data){
+                alert(data);
+            },
+            dataType: "json"
+        })
+
+    }
+    
+     
+    var tableToExcel = (function() {
+
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+        return function(table, name) {
+        if (!table.nodeType) table = document.getElementById(table);
+        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML};
+        window.location.href = uri + base64(format(template, ctx));
+        };
+    })();
+
+ 
+    $(document).ready(function() {
+        var name = localStorage.getItem('name');
+        var user = localStorage.getItem('userid');
+        var role = localStorage.getItem('roleId');
+
+        $('.progress').show('slow')
+
+        $('.guest').html("<strong style='font-size: 20' >Welcome, "+ name+" </strong>");
+        
+        if(role=='client'){
+            $('.ops').addClass('hidden');
+            $('.ops2').addClass('hidden');
+
+            $('.newproject').addClass('hidden');
+            $('.questionaire').addClass('hidden');
+            
+            $('.users').addClass('hidden');
+            $('.mapping').addClass('hidden');
+
+        }else if(role=='manager'){
+            $('.ops').addClass('hidden');
+            // $('.ops').addClass('hidden');
+            $('.newproject').addClass('hidden');
+            $('.questionaire').addClass('hidden');
+
+            $('.users').addClass('hidden');
+            $('.mapping').addClass('hidden');
+
+        }
+
+        $('.alert').hide();
+
+        $('#example0').DataTable();
+        var user = $('#usermail').val();
+
+        $.ajax({
+            url: "/getreportslist",
+            data: "user="+user+"&role="+role,
+            type: "GET",
+            cache: false,
+            success: function(data) {
+                // alert(data)
+                if (data.status=='success'){
+                    $('#report').html(data.result); 
+                }
+                else{
+                    alert(data.error);
+                }
+                
+
+                 
+            },
+            error: function(data){
+                // alert(data);
+            },
+            dataType: "json"
+        });
+
+        // socket.emit('rawdata', user);
+
+        // socket.on('data', (resp) => {
+
+        // })
+
+    });
+</script>
+
+
+
+<script>
+    $(document).ready(function() {
+        var table = $('#example').DataTable({
+            "columnDefs": [
+                { "visible": false, "targets": 2 }
+            ],
+            "order": [[ 2, 'asc' ]],
+            "displayLength": 25,
+            "drawCallback": function ( settings ) {
+                var api = this.api();
+                var rows = api.rows( {page:'current'} ).nodes();
+                var last=null;
+    
+                api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                    if ( last !== group ) {
+                        $(rows).eq( i ).before(
+                            '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                        );
+    
+                        last = group;
+                    }
+                } );
+            }
+        } );
+    
+        // Order by the grouping
+        $('#example tbody').on( 'click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+                table.order( [ 2, 'desc' ] ).draw();
+            }
+            else {
+                table.order( [ 2, 'asc' ] ).draw();
+            }
+        } );
+    } );
+</script>
+
+
+
+
+
+</body>
+</html>

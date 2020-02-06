@@ -10,6 +10,7 @@
     <title>Survey - Admin dashboard</title>
 
     <!-- ========== Css Files ========== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/root.css" rel="stylesheet">
       
     <!-- <script src="js/jquery-3.3.1.js"></script> -->
@@ -33,7 +34,7 @@
       <a href="index.html" class="logo">Survey</a>
     </div>
     <!-- End App Logo -->
-    <h1 class="text-center">Project Questions Setup</h1>
+    <h1 class="text-center" style="color: whitesmoke;">Project Questions Setup</h1>
 
      
   </div>
@@ -44,29 +45,58 @@
 <!-- //////////////////////////////////////////////////////////////////////////// --> 
 <!-- START SIDEBAR -->
 <div class="sidebar clearfix">
+  <ul class="sidebar-panel nav">
+    <li class="sidetitle" > MAIN </li>
+    
+    <li  class='setup'><a href="#"><span class="icon color9"><i class="fa fa-address-card"></i></span>Setup Module<span class="caret"></span></a>
+      <ul>
+          <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-puzzle-piece"></i></span>New Project<span class="label label-default">2</span></a></li>
+          <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-question-circle-o"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
+          
+          <li class='newclient'><a href="clients.html"><span class="icon color8"><i class="fa fa-users"></i></span>New Clients</a></li>     
+          <li class='newoutlet'><a href="outlet.html"><span class="icon color8"><i class="fa fa-university"></i></span>New Outlets</a></li>     
 
-    <ul class="sidebar-panel nav" >
-        
-        <li class="sidetitle">MAIN</li>
-
-        <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-home"></i></span>New Project<span class="label label-default">2</span></a></li>
-        <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-pencil"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
-        
-        <li  class='data'><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>Data Tables<span class="caret"></span></a>
-            <ul>
-            <li><a href="datatable.html"><span class="icon color8"><i class="fa fa-database"></i></span>Raw Data</a></li>
-            <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
-            </ul>
-        </li>
-
-        <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
-        <li class='users'><a href="users.html"><span class="icon color8"><i class="fa fa-users"></i></span>Setup Clients</a></li>     
-        <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
-        <li class='mapping'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Users to Project </a></li>     
-        <li><a href="support.html"><span class="icon color8"><i class="fa fa-home"></i></span>Support Tickets</a></li>     
-
-    </ul> 
-
+          <!-- <li class='newkpi'><a href="kpi.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>New KPI</a></li>      -->
+               
+          <li class="newsupervisor" ><a href="supervisor.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Supervisors</a></li>
+          <li class='newlogindetail'><a href="users.html"><span class="icon color8"><i class="fa fa-user-secret"></i></span>New Login Details</a></li>
+  
+      </ul>
+    </li>
+    
+    <li  class='mapping'><a href="#"><span class="icon color9"><i class="fa fa-sitemap"></i></span> Mapping Module<span class="caret"></span></a>      
+      <ul>
+          <li class='mapuser_project'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Users => Project </a></li>
+          <li class='mapsuper_project'><a href="mapsuper.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Supervisors => Project </a></li>
+          <li class='mapkpi_project'><a href="kpiproject.html">      <span class="icon color8"><i class="fa fa-minus"></i></span> KPIs => Project </a></li>
+          <li class='mapoutlet_auditor'><a href="outlet_device.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Outlet => Auditor </a></li>
+      </ul>
+    </li>
+  
+    <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Report Module<span class="caret"></span></a>
+      <ul class="">
+        <li style="" ><a href="datatable.html"><span class="icon color8 "><i class="fa fa-database" style=""></i></span>Raw Data</a></li>
+        <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+        <li><a href="waves.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>Compare waves Data</a></li>
+  
+        <li class='userlist'><a href="userslist.html"><span class="icon color8"><i class="fa fa-users"></i></span> My Users List </a></li>     
+        <li class='Supervisorlist'><a href="usersreport.html"><span class="icon color8"><i class="fa fa-eye"></i></span> Supervisors </a></li>     
+        <li class='device'><a href="devices.html"><span class="icon color8"><i class="fa fa-android"></i></span> My Registered Devices </a></li>     
+        <li class='device'><a href="device_tracker.html"><span class="icon color8"><i class="fa fa-android"></i></span> Track Devices </a></li>     
+    
+      </ul>
+    </li>
+  
+    <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
+    
+    <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
+    
+    <li><a href="support.html"><span class="icon color8"><i class="fa fa-life-ring"></i></span>Support Tickets</a></li>     
+    <li><a href="dbsockExcel.html"><span class="icon color8"><i class="fa fa-address-book" aria-hidden="true"></i></span>Import Excel Data</a></li>     
+  
+  </ul>
+  
+  
 </div>
 <!-- END SIDEBAR -->
 <!-- //////////////////////////////////////////////////////////////////////////// --> 
@@ -90,12 +120,12 @@
           
         <!-- <div class="holder" > -->
              
-            <div class="row col-md-3" id="r2" >
+            <div class="row col-md-4" id="r2" >
                 <!-- <h2 class="text-center">Project Questions Setup</h2> -->
                 <form method="GET" action="/board.html">
                     <div id="errmsg" style="height: auto; font-size: 20px; font-weight: bold; text-align: center; color: #f50"></div>
                     <input type="hidden" name="usermail" id="usermail"  >
-                                             
+
                     <div class="form-group col-md-12">
                         <label for="projectid" class="col-md-5" > Project </label>
                         <select class="form-control col-md-7" id="projectid" name="projectid" onchange="getQuestion(this.value)">
@@ -118,29 +148,40 @@
                         <label for="projectid" class="col-md-5" > Response Required </label>
                         <select class="form-control col-md-7" id="required" name="required"  >
                           <option value="0">question required?...</option>
-                          <option value="yes">YES</option>
+                          <option value="required">YES</option>
                           <option value="no">NO</option>        
                         </select>                            
                     </div>
                     
                     <div class="form-group col-md-12" >
-                        <button type="button" id="save" class="btn btn-success" onclick="addquestion()" >Submit</button>    
-                        <button type="submit" class="btn btn-primary">Close</button>        
+                        <button type="button" id="save" class="btn btn-success" onclick="addquestion()" > Submit </button>    
+                        <button type="submit" class="btn btn-primary" > Close </button>
                     </div>
                     
                 </form>
 
             </div>
 
-            <div class="row col-md-9 hidden" id="r3" style="height: 400px; overflow: scroll; width: 600px" >
-                <h3 style="text-align: center; background-color: #6F4E37; color: #ffffff">Existing Questions: <p id='questtotal'></p></h3> 
+            <!-- <div class="row" style="text-align: center">
+              
+            </div> -->
 
-                <div class="table-responsive" style="width: auto; background-color: whitesmoke; overflow: scroll" id="result">
+            <div class="row col-md-8" style="width: 600px">
+              <button type="button" class="btn btn-success"  id="save" onclick="" ><i class="fa fa-files-o" > Copy Projects Qestions</i>  </button>    
+              <!-- <button type="button" class="btn btn-primary" > <i class="fa fa-file-excel-o" aria-hidden="true">Upload from Excel</i> </button> -->
+              <!-- <button type="submit" class="btn btn-danger" > <i class="fa fa-list-ol" aria-hidden="true">Rearrange Questionaire</i> </button> -->
 
-                </div> 
             </div>
 
- 
+            <div class="row col-md-8 hidden" id="r3" style="height: 400px; overflow: scroll; width: 600px" >
+              
+              <h3 style="text-align: center; background-color: #6F4E37; color: #ffffff">Existing Questions: <p id='questtotal'></p></h3> 
+
+              <div class="table-responsive" style="width: auto; background-color: whitesmoke; overflow: scroll" id="result">
+
+              </div> 
+              
+            </div>
  
     </div><!-- end of content -->
 
@@ -157,13 +198,87 @@
                 <div class="modal-header" style="padding: 15px 40px; background-color: antiquewhite">
                     <button type="button" class="close" data-dismiss="modal" >&times;</button>
                     <h4 style="text-align: center">Add Conditions to various questions Choices.</h4>
+                    <div style="text-align: center; font-size: 24px; font-weight: bolder; font-family: 'Times New Roman', Times, serif" id="question_txt"></div> 
+                    
                 </div>
 
-                <div class="modal-body" style="height: 300px; ">
-                     
-                    <div class="col-md-12" id="conditiontbl" >
-                      
+                <div class="modal-body" style="height: 300px; overflow: scroll ">
+                    
+                    <input type="hidden" id="choiceid" >
+
+                    <div class="col-md-12 nontxt hidden"  >
+                        <div class="form-group col-md-6">
+                            <label for="projectid" class="col-md-5" > If user picks  </label>
+                            <select class="form-control col-md-7" id="option_id" name="option_id" onchange="mapExistingSelection(this.value)" >
+                                 
+                            </select>                            
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label for="projectid" class="col-md-5" > Select SKIP question </label>
+                            <select class="form-control col-md-7" id="question_id" name="question_id">
+                                 
+                            </select>                            
+                        </div>
+                        
+                        <div id="resu" class=""></div>
+
+                        <!-- <table id="conditiontbl" class="table table-hover" style="overflow: scroll">
+
+                        </table> -->
                     </div>
+
+                    <div class="col-md-12 txt hidden">
+                      <h3 style="text-align: center; background-color: lightskyblue;">Control Minimum and Maximum length of Characters.</h3>
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-5" > Min. Characters. </label>
+                            <input class="form-control col-md-7" type="number" name="minxter" id="minxter" value="0">
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-5" > Max. Characters. </label>
+                            <input class="form-control col-md-7" type="number" name="maxxter" id="maxxter" value="0">
+                        </div>
+                        
+
+                    </div>
+                    <div class="col-md-12 num hidden">
+                      
+                      <div class="col-md-12">
+                          
+                        <h3 style="text-align: center; background-color: lightskyblue;">Control Minimum and Maximum values allowed.</h3>
+                      
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-5" > Min. Characters. </label>
+                            <input class="form-control col-md-7" type="number" name="minvalue" id="minvalue" value="0">
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-5" > Max. Characters. </label>
+                            <input class="form-control col-md-7" type="number" name="maxvalue" id="maxvalue" value="0">
+                        </div>
+                          
+                      </div>
+                      <!-- <div class="col-md-6">
+                          
+                        <h3>Control Minimum and Maximum values allowed.</h3>
+                      
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-5" > Min. Characters. </label>
+                            <input type="number" name="minxter2" id="minxter2" value="0">
+                        </div>
+                        
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-5" > Max. Characters. </label>
+                            <input type="number" name="maxxter2" id="maxxter2" value="0">
+                        </div>
+                          
+                      </div> -->
+
+                        
+
+                    </div>
+
 
                     <!-- <div class="form-group-sm col-md-12 res hidden" style="overflow-y: scroll; height: 100px" >
 
@@ -171,8 +286,8 @@
 
                 </div>
 
-                <div class="modal-footer col-md-12" style="background-color: antiquewhite">
-                    <button type="button" class="btn btn-success rounded" onclick="saveCondition()" id="condition" ><i class="fa fa-arrow-circle-o-up" ></i>Submit</button>
+                <div class="modal-footer" style="background-color: antiquewhite">
+                    <button type="button" class="btn btn-success rounded" onclick="saveCondition()" id="condition" ><i class="fa fa-database" ></i>Submit</button>
                     <button type="button" class="btn btn-primary" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
                 </div>
 
@@ -196,38 +311,52 @@
                     <div class="col-md-12">
                         <!-- <label for="teler1" class="form-label col-md-5" style="font-size: 22px" >Your Question</label>  -->
                         <div class="col-md-12" >
-                            <input class="q1 col-md-12" data-toggle="tooltip" readonly  style="font-weight: bolder; font-size: 18px; text-align: center">
+                            <div class="q1 col-md-12" data-toggle="tooltip" readonly  style="font-weight: bolder; font-size: 18px; text-align: center"></div>
                         </div>
-                        
                     </div> 
                     
-                    <div class="col-md-8" style="background-color: whitesmoke">
+                    <div class="col-md-6" style="background-color: whitesmoke">
                         <!-- <h4 >Add Options</h4> -->
- 
-                        <div class="form-group col-md-6">
-                            <label for="edate" class="col-md-5" >Response Text</label>
-                            <input type="text" name="response" id="response" autocomplete="off" class="form-control col-md-7" placeholder="Enter Choice text to be seen by users...">                            
+                        <div class="form-group col-md-12">
+                            <label for="edate" class="col-md-4" >Response Text</label>
+                            <input type="text" name="response" id="response" autocomplete="off" class="form-control col-md-8" placeholder="Enter Choice text to be seen by users...">                            
                         </div>
- 
-                        <div class="form-group col-md-7">
+
+                        <div class="form-group col-md-12">
                             <label for="teler1" class="form-label col-md-5" style="font-size: 16px" >Choice Type</label> 
                             
-                            <select name="c_type" id="c_type" class="form-control col-md-7">
-                                <option value="0"   >Select Choice display type</option>
-                                <option value="txt" >Text Input</option>
-                                <option value="num" >Number Input</option>
-                                
-                                <option value="rad" >Radio button</option>
-                                <option value="chk" >Check boxes</option>
-                                <option value="img" >Image Picker</option>
+                            <select name="c_type" id="c_type" class="form-control col-md-7" >
+                              <option value="0"   > Select Choice display type</option>
+                              <option value="txt" > Text Input  </option>
+                              <option value="num" > Number Input</option>
+                              <option value="dat" > Date Input</option>
+                              <option value="mul" > Multiline Input</option>
+                              <option value="sel" > Drop Down List box</option>
+                              
+                              <option value="rad" > Radio button</option>
+                              <option value="chk" > Check boxes </option>
+                              <option value="img" > Image Picker</option>
+                              <option value="aud" > Audio Recorder</option>
+                              <option value="vid" > Video Recorder</option>
                             </select>
+                        </div>
 
-                        </div>  
+                        <div class="form-group col-md-12">
+                          <label for="edate" class="col-md-12" > Copy Options IN</label>
+                          <select id="o_q_id" class="form-control col-md-5" ></select>
+                          <button type="button" name="copyoptions" id="copyoptions" class="btn btn-primary" onclick="copyOptions()" ><i class="fa fa-files-o"></i></button>
+                        </div>
+
+                        <div class="form-group col-md-12 hidden">
+                          <label for="edate" class="col-md-4" > Manifesto LInk</label>
+                          <input type="text" name="urllink" id="urllink" autocomplete="off" class="form-control col-md-8" placeholder="Enter candidate URL...">
+
+                        </div>
 
                     </div>
 
-                    <div class='col-md-4' >
-                        <p class="col-md-12" ><h5>Question Options</h5></p>
+                    <div class='col-md-6 pull-left' >
+                        <p class="col-md-12" ><h5>Question Current Options</h5></p>
                         <div id="choices" class="form-group col-md-12" style="background-color: transparent; height: 280px; overflow: scroll" > 
                             
                         </div> 
@@ -235,9 +364,9 @@
                     
                 </div>
 
-                <div class="modal-footer col-md-12" style="background-color: antiquewhite">
-                    <button type="button" class="btn btn-group-sm rounded" onclick="saveChoices()" id="pusher" ><i class="fa fa-arrow-circle-o-up" ></i>Submit</button>
-                    <button type="button" class="btn btn-orange" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
+                <div class="modal-footer" style="background-color: antiquewhite">
+                    <button type="button" class="btn btn-primary btn-group-sm rounded" onclick="saveChoices()" id="pusher" ><i class="fa fa-database" ></i>Submit</button>
+                    <button type="button" class="btn btn-danger btn-orange" data-toggle='tooltip' title='Close window' id="closer"  data-dismiss="modal">Close</button>
                 </div>
 
             </div>
@@ -263,16 +392,18 @@ jQuery Library
 
 <script>
   var user = localStorage.getItem('userid');
+  var role = localStorage.getItem('roleId');
+
   // alert(user)
   $('#usermail').val(user);
 
-  $(document).ready(function(){
+  $(document).ready(function() {
     var user = $('#usermail').val();
     // alert(user);
 
     $.ajax({
       url: "/getprojectslist",
-      data: "user="+user,
+      data: "user="+user+"&role="+role,
       type: "get",
       cache: false,
       success: function(data){
@@ -287,8 +418,87 @@ jQuery Library
 
   });
 
+  function setSelectedIndex(s, valsearch)
+  {
+    // Loop through all the items in drop down list
+    // alert(s)
+    // alert(valsearch)
+    
+    for (var i = 0; i < s.options.length; i++)
+    { 
+        if (s.options[i].value == valsearch)
+        {
+            // Item is found. Set its property and exit
+            s.options[i].selected = true;
+            break;
+        }
+    }
+    // alert('dele')
+    return;
+  }
+
+
+  var getchoices = (opt_id, gotoquestion) => {
+    // alert(opt_id+":::"+gotoquestion )
+    // swal(opt_id)
+    // $('#choiceid').val(id)
+    // $('#condition').attr('disabled', false);
+
+    // $.ajax({
+    //   url: "/updatecondition",
+    //   data: "option="+opt_id+"&gotoquestion="+gotoquestion,
+    //   type: "get",
+    //   cache: false,
+    //   success: function(data){
+    //     swal('condition', data, 'success');
+    //     // $('#projectid').html(data);
+    //   },
+    //   error: function(data){
+    //     swal("Error: "+data);
+    //   },
+    //   dataType: "text"
+    // });
+
+
+  }
+
+  var copyOptions = () => {
+    var c_to = $('.refnos').val(); 
+    var c_from = $('#o_q_id').val();
+
+    $.ajax({
+      url: "/copyoptions",
+      data: "cfrom="+c_from+"&cto="+c_to,
+      type: "get",
+      cache: false,
+      success: function(data) {
+        // display all copied options
+        var str;
+        var str ="<table class='table table-hover' >";
+        for(var xx=0; xx < data.length; xx++){
+            var y = xx + 1;
+            
+            str += '<tr  >' + '<td style="text-align: left; font-size: 14px">'+ y +' </td> <td style="text-align: left; font-size: 14px" >' + data[xx].response_text + '</td> <td><button class="btn btn-primary" id="'+ data[xx].refnos +'" name="'+ data[xx].response_text +'" onclick="deleteOptions(this.id, this.name)" >Delete</button></td>  </tr>';
+        }
+        str += "</table>";
+
+        $('#choices').html(str);
+
+
+
+        console.log(data);
+        
+      },
+      error: function(data) {
+        alert(data);
+      },
+      dataType: "json"
+    })
+  }
+
   var getQuestion = (id) => {
     $('#r3').removeClass('hidden');
+    
     $.ajax({
       url: "/getquestions",
       data: "projectid="+id,
@@ -297,15 +507,16 @@ jQuery Library
       success: function(data) {
         console.log(data);
         // alert(data)
-        var arr = data.split('$');
+        // var arr = data.split('$');
         // alert(arr[3])
-        $('#result').html(arr[2]);
-        $('#questtotal').html(arr[4]);
+        $('#result').html(data.str);
+        $('#questtotal').html(data.questtotal);
+        $('#o_q_id').html(data.questDDL);
       },
-      error: function(data){
+      error: function(data) {
         alert(data);
       },
-      dataType: "text"
+      dataType: "json"
     })  
   };
 
@@ -331,15 +542,39 @@ jQuery Library
 
   }
 
-  var questionCondition = (id) => {
+  var saver = (id) => {
+    swal(id)
+    swal($('#restext').val());
+  }
+
+  var showquest = (id) => {
+    // swal(id);
+    var htmlObj = document.getElementById('restext');
+
+    console.log(id);
+    console.log(htmlObj);
+
+    setSelectedIndex(htmlObj, id);
+  };
+
+  var questionCondition = (id, question) => {
     $('#questno').val(id);
+    $('#question_txt').html(question);
+
+    alert(id);
+    alert(question);
+
     var projectid = $('#projectid').val();
 
     // alert(projectid)
+
+    /** START the Question option condition here */
+
     $("#addConditions").modal({
         backdrop: 'static',
         keyboard: false
     });
+    
 
     $.ajax({
       url: "/setQuestionCondition",
@@ -347,31 +582,93 @@ jQuery Library
       cache: false, 
       type: "GET",
       success: (data) => {
-        $('#conditiontbl').html(data);
-      },
-      error: (data) => {
+        // alert(data)
+        console.log(data);
 
-      }
+        var options   = data.options;
+        var questions = data.question;
+        var coltype   = data.colType;
+        var opt_res   = data.values;
+        
+        // console.log(options);
+        // console.log(questions);
+
+        $('#option_id').html(options);
+        $('#question_id').html(questions);
+        $('#resu').html(data.responseText);
+
+        optionId = data.optionId;
+        
+        // console.log(optionId);
+
+        localStorage.setItem('coltype', coltype);
+        localStorage.setItem('optionId', optionId); //This will be used to manage txt, num and the likes  in terms of client management
+
+        if(coltype=='txt') {
+          $('.txt').removeClass('hidden');
+          $('.nontxt').addClass('hidden');
+          $('.num').addClass('hidden');
+        } else if(coltype!=='txt' && coltype !=='num') {
+          $('.txt').addClass('hidden');
+          $('.nontxt').removeClass('hidden');
+          $('.num').addClass('hidden');
+        } else if(coltype=='num') {
+          $('.txt').addClass('hidden');
+          $('.nontxt').addClass('hidden');
+          $('.num').removeClass('hidden');
+
+          opt_res.forEach((rec)=>{
+            var min = rec.min_v;
+            var max = rec.max_v;
+
+            $('#minvalue').val(min);
+            $('#maxvalue').val(max);
+          })
+
+        }
+        
+        // else if(coltype=='chk'){
+        //   $('.txt').addClass('hidden');
+        //   $('.nontxt').addClass('hidden');
+        //   $('.num').removeClass('hidden');
+        // }
+        
+        // alert(coltype);
+      },
+      error: (err) => {
+alert(err.statusText)
+      },
+      dataType: "JSON"
 
     });
 
   }
 
   var deleteQuestion = (id) => {
-    $.ajax({
-      url: "/deletequestion",
-      data: "questionid="+id,
-      cache: false, 
-      type: "GET",
-      success: (data) => {
-        alert(data);
-      },
-      error: (data) => {
 
-      }
+    var x = confirm('Are you Sure You want to delete question ???');
+// alert(id)
+    if(x){
+      
+      $.ajax({
+        url: "/deletequestion",
+        data: "questionid="+id,
+        cache: false, 
+        type: "GET",
+        success: (data) => {
+          // alert(data);
+          if(data.affectedRows > 0){
+            swal('Delete','Record deleted successfully...', 'information');
+          }
+          console.log(data)
+        },
+        error: (err) => {
+          alert(err)
+        }
 
-    });
+      });
 
+    }
   }
 
   var postproject = () => {
@@ -397,6 +694,7 @@ jQuery Library
         datatype: "text"
     });
 
+
   }
  
   var openoptions = (id, question) => {
@@ -413,12 +711,31 @@ jQuery Library
         cache: false,
         data: "questionId="+id , 
         success: function(data){ 
-          var questionOptions = '<table class="table table-hover">';
 
-          data.forEach(function(el, xx){
+          var questionOptions = '<table class="table table-bordered">';
+            questionOptions+= '<tr style="background-color: lightskyblue; color: whitesmoked; font-weight: bolder; font-size: 18px" ><td>S/N</td><td>Placeholder</td><td>Option Type</td><td></td></tr>'
+
+          data.forEach(function(el, xx) {
             var y = xx + 1;
+            var coltype = data[xx].coltype;
+            if(coltype=='num') {
+              coltype="Number Input";
+            }
+            else if(coltype=='rad'){
+              coltype="Radio";
+            }
+            else if(coltype=='chk'){
+              coltype="Checkbox";
+            }
+            else if(coltype=='txt'){
+              coltype="Text Input";
+            }
+            else if(coltype=='img' || coltype=='vid' || coltype=='aud') {
+              coltype="Media Processor";
+            }
             
-            questionOptions += '<tr  >' + '<td style="text-align: left; font-size: 14px">'+ y +' </td> <td style="text-align: left; font-size: 14px" >' + data[xx].response_text + '</td> <td><button class="btn btn-primary" id="'+ data[xx].refnos +'" name="'+ data[xx].response_text +'" onclick="deleteOptions(this.id, this.name)" >Delete</button></td>  </tr>';
+            questionOptions += '<tr  >' + '<td style="text-align: left; font-size: 14px">'+ y +' </td> <td style="text-align: left; font-size: 14px" >' + data[xx].response_text + '</td><td style="text-align: left; font-size: 14px" >' + coltype + '</td> <td><button class="btn btn-primary" id="'+ data[xx].refnos +'" name="'+ data[xx].response_text +'" onclick="deleteOptions(this.id, this.name)" >Deleted</button></td>  </tr>';
+            // questionOptions += '<tr  >' + '<td style="text-align: left; font-size: 14px">'+ y +' </td> <td style="text-align: left; font-size: 14px" >' + data[xx].response_text + '</td> <td style="text-align: left; font-size: 14px" >' + data[xx].optionURL + '</td> <td><button class="btn btn-primary" id="'+ data[xx].refnos +'" name="'+ data[xx].response_text +'" onclick="deleteOptions(this.id, this.name)" >Delete</button></td>  </tr>';
 
             // questionOptions += '<td style><button class="btn btn-primary" id="' + data[xx].refnos + '" onclick="deleteOptions(this.id)" >Delete</button>'+ '<td>'+ data[xx].response_text + '</td>'; 
           })
@@ -468,14 +785,17 @@ jQuery Library
     // var projectRef = $("#project").val();
     var questionRef = $(".refnos").val();
     var choice = $("#response").val().trim();
+    var urllink = $("#urllink").val().trim();
     var type = $("#c_type").val().trim(); 
 
     $.ajax({
         url: "/savechoice",
         type: "get",
         cache: false,
-        data: "questionid="+questionRef+"&choice="+choice+"&type="+type,
+        data: "questionid="+questionRef+"&choice="+choice+"&type="+type+"&url="+urllink,
         success: function(data){
+
+          // alert(data)
             var str;
             var str ="<table class='table table-hover' >";
             for(var xx=0; xx < data.length; xx++){
@@ -496,75 +816,139 @@ jQuery Library
    
 }
 
-var saveCondition = ()=>{
-    var questionId = $('.refnos').val();
-    var responseId = $('#choice').val();
-    var gotoId = $('#goto').val();
-    var gotoIndex = ($('#questno').val() - 1);
+var saveCondition = () => {
+  var user = localStorage.getItem('userid');
+  var coltype = localStorage.getItem('coltype');
 
-    
-    var dataObj = {
-        questionId: questionId, 
-        responseId: responseId,
-        gotoId: gotoId
-    }
+  if(coltype=='rad' || coltype=='chk') {
+    var questionId = $('#questno').val();
 
-    // console.log("data: "+dataObj.questionId)
-
-    // alert(questionId+":::"+responseId+":::"+gotoId)
+    var optionId = $('#option_id').val();
+    var gotoquestionId = $('#question_id').val();
+ 
     $.ajax({
         url: "/savecondition",
-        type: "post",
+        type: "POST",
         cache: false,
+        // data: {insertObject: dataObj},
         // data: dataObj,
-        data: "questionId="+questionId+"&responseId="+responseId+"&gotoId="+gotoId+"&gotoIndex="+gotoIndex, //questno
+        data: "user="+user+"&question_id="+questionId+"&option_id="+optionId+"&skipquestion_id="+gotoquestionId, //questno
         success: function(data){ 
+          // alert(data);
             var str;
-            //  console.log(data)
-            $('#choices').html(str);
+             console.log(data)
+            $('#resu').html(data.resp);
 
         },
         error: function(data){
 
         },
-        datatype: "text"
+        datatype: "JSON"
     })
+
+  }else if(coltype=='txt') {
+    var questionId = $('#questno').val();
+
+    var optionId = localStorage.getItem('optionId');
+
+    var min = $('#minxter').val();
+    var max = $('#maxxter').val();
+
+    $.ajax({
+      url: "/saveconditiontxt",
+        type: "POST",
+        cache: false,
+        // data: {insertObject: dataObj},
+        // data: dataObj,
+        data: "user="+user+"&question_id="+questionId+"&option_id="+optionId+"&min="+min+"&max="+max, //questno
+        success: function(data) { 
+            var str;
+            swal("Saved", data.resp, "success");
+            // $('#resu').html(data.resp);
+        },
+        error: function(data){
+
+        },
+        datatype: "JSON"
+    })
+  
+
+  } else if(coltype=='num') {
+    var questionId = $('#questno').val();
+
+    var optionId = localStorage.getItem('optionId');
+
+    var min = $('#minvalue').val();
+    var max = $('#maxvalue').val();
+
+    // alert(min)
+    // alert(max)
+
+    $.ajax({
+      url: "/saveconditionnum",
+        type: "POST",
+        cache: false,
+        // data: {insertObject: dataObj},
+        // data: dataObj,
+        data: "user="+user+"&question_id="+questionId+"&option_id="+optionId+"&min="+min+"&max="+max, //questno
+        success: function(data) { 
+            var str;
+            swal("Saved", data.resp, "success");
+            // $('#resu').html(data.resp);
+        },
+        error: function(data){
+
+        },
+        datatype: "JSON"
+    })
+  
+  
+  }
+  
+  
+
+
 }
 
-  var deleteOptions = (id, name) => {
-    var questionId = $('.refnos').val();
-    // alert(questionId);
-    // return
-    $.ajax({
-      url: "/deleteOption",
-      data: "code="+id+"&questionid="+questionId,
-      cache: false,
-      type: "GET",
-      success: function(data){
 
-        
-        $('#choices').html(data);
+var mapExistingSelection = (selectedVal) => {
+  // alert(selectedVal);
+};
 
-        // var y=0;
-        // // alert(data)
-        // var str ="<table class='table table-hover' >";
-        //     for(var xx=0; xx < data.length; xx++){
-        //         y = xx + 1;
-                
-        //         str += '<tr  >' + '<td style="text-align: left; font-size: 14px">'+ y +' </td> <td style="text-align: left; font-size: 14px" >' + data[xx].response_text + '</td> <td><button class="btn btn-primary" id="'+ data[xx].refnos +'" name="'+ data[xx].response_text +'" onclick="deleteOptions(this.id, this.name)" >Delete</button></td>  </tr>';
-        //     }
-        //     str += "</table>";
+var deleteOptions = (id, name) => {
+  var questionId = $('.refnos').val();
+  // alert(id);
+  // return
+  $.ajax({
+    url: "/deleteOption",
+    data: "code="+id+"&questionid="+questionId,
+    cache: false,
+    type: "GET",
+    success: function(data){
 
-        //     $('#choices').html(str);
+      
+      $('#choices').html(data);
 
-      },
-      error: function(data){
+      // var y=0;
+      // // alert(data)
+      // var str ="<table class='table table-hover' >";
+      //     for(var xx=0; xx < data.length; xx++){
+      //         y = xx + 1;
+              
+      //         str += '<tr  >' + '<td style="text-align: left; font-size: 14px">'+ y +' </td> <td style="text-align: left; font-size: 14px" >' + data[xx].response_text + '</td> <td><button class="btn btn-primary" id="'+ data[xx].refnos +'" name="'+ data[xx].response_text +'" onclick="deleteOptions(this.id, this.name)" >Delete</button></td>  </tr>';
+      //     }
+      //     str += "</table>";
 
-      },
-      dataType: "text"
-    })
+      //     $('#choices').html(str);
 
-  }
+    },
+    error: function(data){
+
+    },
+    dataType: "text"
+  })
+
+}
 
 
 </script>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
+    <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
+
+    <title>SurveyPlanet - Admin dashboard</title>
+    
+    <!-- ========== Css Files ========== -->
+    <link href="css/root.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+    <link rel="stylesheet" href="css/plugin/sweet-alert/sweet-alert.css">
+    <!-- <link rel="stylesheet" href="dist/css/bootstrap.min.css"> -->
+
+    <!-- <script src="dist/js/bootstrap.min.js"></script> -->
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+    <script src="js/socket.js" ></script>
+
+    <script type="text/javascript" > 
+        
+        $("#alert-target").click(function () {
+            toastr["info"]("I was launched via jQuery!")
+        });
+    
+    </script>
+
+    <style>
+        td, th {
+            white-space: nowrap;
+            /* overflow: hidden; */
+            
+                      
+        }
+
+        /* @import "compass/css3";
+
+        body{
+        padding: 50px;
+        } */
+    </style>
+  </head>
+  <body >
+  <!-- Start Page Loading -->
+  <div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
+  <!-- End Page Loading -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+  <!-- START TOP -->
+  <div id="top" class="clearfix">
+
+    <!-- Start App Logo -->
+    <div class="applogo">
+      <a href="index.html" class="logo">Survey</a>
+    </div>
+    <!-- End App Logo -->
+    <h1 class="text-center"> Excel Data Mapping </h1>
+
+     
+  </div>
+  <!-- END TOP -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START SIDEBAR -->
+<div class="sidebar clearfix">
+
+<ul class="sidebar-panel nav">
+    <li class="sidetitle">MAIN</li>
+    <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-home"></i></span>New Project<span class="label label-default">2</span></a></li>
+    <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-pencil"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
+    
+    <li  class='data'><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>Data Tables<span class="caret"></span></a>
+      <ul>
+        <li><a href="datatable.html"><span class="icon color8"><i class="fa fa-database"></i></span>Raw Data</a></li>
+        <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+      </ul>
+    </li>
+  
+    <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
+    <li class='users'><a href="users.html"><span class="icon color8"><i class="fa fa-users"></i></span>Setup Clients</a></li>     
+    <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
+    <li class='mapping'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Users to Project </a></li>     
+    <li><a href="support.html"><span class="icon color8"><i class="fa fa-home"></i></span>Support Tickets</a></li>     
+    </ul>
+     
+ </div>
+
+
+<!-- END SIDEBAR -->
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTENT -->
+<div class="content">
+
+  
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- START CONTAINER -->
+<div class="container-fluid">
+  
+  <!-- Start Fifth Row -->
+  <div class="row">
+
+        <!-- Start Panel -->
+        <div class="" style="">
+            <div id="errmsg" style="height: auto; font-size: 20px; font-weight: bold; text-align: center; color: #f50"></div>
+            <input type="hidden" name="usermail" id="usermail" >
+            <!-- <a class="btn btn-info btn-lg" type="hidden" id="alert-target">Click me!</a> -->
+
+            <div class="panel panel-default" style="background-color: whitesmoke; overflow: scroll">
+                <div class="panel-title" style="background-color: skyblue" >
+                    <p class='' style="text-align: center; font-size:  20px; background-color: transparent; color: black" > Excel Data Transport. </p>
+                    <p class="guest">  </p>
+                
+                    <!-- <div class="shadow-lg p-3 mb-5 bg-white rounded">Raw Field Data. </div> -->
+                </div>
+                    
+                <div class="panel-body">
+
+                    <div class="form-group col-md-6">
+                        <label for="project" class="col-md-4" > Select Project </label>
+                        <select class="col-md-8" id="project" name="project" onchange="getQuestions(this.value)" >
+                                
+                        </select>    
+                        <!-- <p id="counter"></p>                         -->
+                    </div>
+                    
+                    <div class="form-group clearfix col-md-6">
+                        <label for="projectid" class="col-md-4" > SKU Code </label>
+                        <select class="col-md-8" id="projectid" name="projectid" >
+                                
+                        </select>    
+                        <!-- <p id="counter"></p>                         -->
+                    </div>
+
+                    <div class="form-group clearfix col-md-6" style="background-color: whitesmoke;">
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-12" > Constant </label>
+                            <input type="radio" class="status col-md-12" id="constant" name="status" value="constant" onclick="getclicked(this.value)" >     
+                        </div>
+                    </div>
+
+                    <div class="form-group clearfix col-md-6" style="background-color: whitesmoke;">
+                        <div class="form-group col-md-12">
+                            <label for="projectid" class="col-md-12" > Response </label>
+                            <input type="radio" class="status col-md-12" id="response" name="status" value="response" onclick="getclicked(this.value)" >
+                        </div>    
+                    </div>
+
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                            <span class="sr-only">100% Complete</span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group clearfix col-md-6">
+                        <label for="questionid" class="col-md-4" > Question Id </label>
+                        <select class="col-md-8" id="questionid" name="questionid" >
+                                
+                        </select>    
+                        <!-- <p id="counter"></p>                         -->
+                    </div>
+                    
+                    <div class="form-group clearfix col-md-6" >
+                        <label for="responseid" class="col-md-4" > Response Pointer </label>
+                        <select class="col-md-8" id="responseid" name="responseid" >
+                                
+                        </select>    
+                        <!-- <p id="counter"></p>                         -->
+                    </div>
+
+                    
+                    
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success" onclick="saveData()" > Save </button>
+                        
+                        <button type="button" class="btn btn-primary" onclick="uploadskucode()" > Upload SKU Columns </button>
+                        <button type="button" class="btn btn-primary" onclick="uploadquestionaire()" > Upload Questionaire </button>
+                        <button type="button" class="btn btn-primary" onclick="uploadresponses()" > Upload Responses </button>
+                        <button type="button" class="btn btn-success" onclick="" > Close </button>
+                    
+                    </div>
+
+                    <div id='table' class="table table-bordered"  style='overflow: scroll'  >
+
+                        <!-- <table width="70%" id="" class="table-hover">
+                            
+                        </table> -->
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- End Panel --> 
+
+</div> <!-- End Fifth Row -->
+ 
+<!-- END CONTAINER -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+
+</div>
+<!-- End Content -->
+ <!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- //////////////////////////////////////////////////////////////////////////// --> 
+<!-- ================================================
+jQuery Library
+================================================ -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<!-- ================================================
+Bootstrap Core JavaScript File
+================================================ -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
+
+<!-- ================================================
+Plugin.js - Some Specific JS codes for Plugin Settings
+================================================ -->
+<script type="text/javascript" src="js/plugins.js"></script>
+
+<!-- ================================================
+Data Tables
+================================================ -->
+<script src="js/datatables/datatables.min.js"></script>
+
+<script src="js/sweet-alert/sweet-alert.min.js"></script>
+
+
+
+<script>
+
+    var getclicked = (val)=>{
+        // alert(val)
+    }
+
+    var uploadskucode = () => {
+        var project_id = $('#project').val();
+
+        $.ajax({
+            url: "/uploadskucode",
+            data: "project="+project_id,
+            cache: false,
+            type: "GET",
+            success: function(data) {
+                // alert(data)
+            },
+            error: function(err) {
+                console.log(err)
+            },
+            datatype: "text"
+        })
+    }
+
+    var uploadquestionaire = () => {
+        var project_id = $('#project').val();
+
+        $.ajax({
+            url: "/uploadquestionaire",
+            data: "project="+project_id,
+            cache: false,
+            type: "GET",
+            success: function(data) {
+                // alert(data)
+            },
+            error: function(err) {
+                console.log(err)
+            },
+            datatype: "text"
+        })
+    }
+
+    var uploadresponses = () => {
+        var project_id = $('#project').val();
+
+        $.ajax({
+            url: "/uploadresponses",
+            data: "project="+project_id,
+            cache: false,
+            type: "GET",
+            success: function(data){
+
+            },
+            error: function(err){
+
+            },
+            dataType: "text"
+        })
+    }
+
+    $('input:radio[name=status]:checked').val();
+
+
+    var usermail = localStorage.getItem('userid');
+    $('#usermail').val(usermail);
+
+    var check = (id)=>{
+        alert('Dele: '+ id);
+    };
+
+    var closeDialog = () => {
+        window.location = 'board.html';
+    };
+
+    var getProjectquestionaire = ()=> {
+        $.ajax({
+            url: "/",
+            data: "",
+            cache: false,
+            type: "GET",
+            success: function(data){
+
+            },
+            error: function(err){
+
+            },
+            datatype: "text"
+        })
+    }
+
+    var getQuestions = (code) => {
+        // alert(code)
+        var x = $("#uid").html(); 
+        $.ajax({ 
+            url: "/questionsddl",
+            method:"GET",
+            data: "projectid="+code,
+            cache: false,
+            success: function(data){ 
+
+                $("#questionid").html(data.val);
+                $("#responseid").html(data.tbl);
+                
+
+            },
+            error: function(data){
+                alert("E: "+data);
+            },
+            datatype: "text"
+        })
+
+    }
+
+    var saveData = ()=>{
+        var question=0;
+        var project = $('#project').val();
+        var skucode = $('#projectid').val();
+        // var state   = $('#status').val();
+        var state  = $('input:radio[name=status]:checked').val();
+            
+        var question = $('#questionid').val();
+        var response = $('#responseid').val(); //pointer to the response table column
+
+        if (state=='constant') {
+            question=$('#responseid').val();
+        } else if (state=='response') {
+            question=$('#questionid').val();
+        }
+
+
+        // alert(response)
+        // alert(question)
+        // alert(question)
+// return
+        $.ajax({
+            url: "/saveskumap",
+            data: "sku="+skucode+"&state="+state+"&question="+question+"&project="+project+"&response="+response,
+            type: "GET",
+            cache: false,
+            success: function(data) {
+                // alert(data)
+                // $('#result').html(data);
+                $('#table').html(data);
+                // $('#counter').html(data.counter);
+
+                console.log(data)
+            },
+            error: function(data) {
+                alert(data);
+            },
+            dataType: "text"
+        })
+
+    }
+
+    var getRawData = (id) => {
+        var user = $('#usermail').val();
+        var role = localStorage.getItem('roleId');
+        // alert(user)
+        // alert(role)
+        $.ajax({
+            url: "/projrawdata",
+            data: "user="+user+"&projectid="+id+"&role="+role,
+            type: "GET",
+            cache: false,
+            success: function(data){
+                // alert(data)
+                // $('#result').html(data);
+                $('#table').html(data.str);
+                $('#counter').html(data.counter);
+
+                console.log(data)
+            },
+            error: function(data){
+                alert(data);
+            },
+            dataType: "json"
+        })
+
+    }
+
+    var getClickedData = (id) => {
+        // alert(id);
+
+        /** GET the data for the passed id
+         *  introduce the questions table 
+         *  and options table in displaying
+         *  the submitted data.
+         * 
+         *  If there is changes to the data,
+         *  update the changes and log the 
+         *  previous record in the audit trail
+         *  table: TO BE CREATED!
+         */
+         $("#pushtodisplay").modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        /** SHow a processing effect to client while getting data */
+
+        $.ajax({
+            url: "/editquestionaire",
+            type: "GET",
+            data: "ref="+id,
+            cache: false,
+            success: function(data){
+                // alert(data)
+                $('.responses').html(data);
+
+            },
+            error: function(err){
+
+            },
+            datatype: "text"
+        })
+
+        
+
+    }
+
+    var tableToExcel = (function() {
+
+        var uri = 'data:application/vnd.ms-excel;base64,'
+        , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+        , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+        , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) }
+        return function(table, name) {
+        if (!table.nodeType) table = document.getElementById(table);
+        var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML};
+        window.location.href = uri + base64(format(template, ctx));
+        };
+    })();
+
+
+    var opendata = () => {
+        var projectid = $("#projectid").val();
+        $('.alert').show();
+        $('#alerts').html('<strong>Success!</strong> You have sent the field data to the client successfully!');
+
+        // <strong>Success!</strong> You have sent the field data to the client successfully!
+        // window.setTimeout(function() {
+        //     $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        //         $(this).remove(); 
+        //     });
+            
+        // }, 4000);
+
+
+        $.ajax({
+            url: "/returntoclient",
+            data: "projectid="+projectid,
+            type: "GET",
+            cache: false,
+            success: function(data) {
+                getRawData(projectid);
+                swal("Sent!", "Field data sent to client successfully...", "success")
+
+                $(".alert").fadeTo(5000, 0).slideUp(1000, function(){
+                    // $(this).remove(); 
+                });
+            
+
+            },
+            error: function(data){
+                // alert(data);
+            },
+            dataType: "text"
+        });
+
+
+    }
+
+    var checker = (id, projectid) => {
+        var totalRowCount = 0;
+        var rowCount = 0;
+        var table = document.getElementById("example0");
+        var rows = table.getElementsByTagName("tr");
+        
+        // var projectid = $('#projectid').val();
+
+        // alert($('#projectid').val());
+
+        var charttype = $("#header").is(":checked");
+        var stat;
+
+        if(charttype){
+            $(".rad").prop("checked", true);
+            stat=1;
+        }else{
+            $(".rad").prop("checked", false);
+            stat=0;
+        };
+
+        $.ajax({
+            url: "/changechecker",
+            cache: false,
+            method: "GET",
+            data: "project="+projectid+"&stat="+stat,
+            success: (data) => {
+                // alert(data);
+            },
+            error: (err) => {
+                // alert(err);
+            },
+            datatype: "text"
+        })
+
+        // for (var i = 0; i < rows.length; i++) {
+        //     // $(".rad").prop("checked", true);
+
+        //     totalRowCount++;
+        //     if (rows[i].getElementsByTagName("td").length > 0) {
+        //         rowCount++;
+        //     }
+        // };
+        // var message = "Total Row Count: " + totalRowCount;
+        // message += "\nRow Count: " + rowCount;
+        
+    }
+    var checkersingleton = (id, refcode) => {
+        var totalRowCount = 0;
+        var rowCount = 0;
+        var table = document.getElementById("example0");
+        var rows = table.getElementsByTagName("tr");
+        
+        var projectid = $('#projectid').val();
+
+        // alert($('#projectid').val());
+
+        var charttype = $("#"+id).is(":checked");
+        var stat;
+// alert(charttype)
+
+        if(charttype){
+            $("#"+id).prop("checked", true);
+            stat=1;
+        }else{
+            $("#"+id).prop("checked", false);
+            stat=0;
+        };
+
+        $.ajax({
+            url: "/changecheckers",
+            cache: false,
+            method: "GET",
+            data: "project="+projectid+"&stat="+stat+"&ref="+id+"&refcode="+refcode,
+            success: (data) => {
+                // alert(data);
+            },
+            error: (err) => {
+                // alert(err);
+            },
+            datatype: "text"
+        });
+
+        // for (var i = 0; i < rows.length; i++) {
+        //     // $(".rad").prop("checked", true);
+
+        //     totalRowCount++;
+        //     if (rows[i].getElementsByTagName("td").length > 0) {
+        //         rowCount++;
+        //     }
+        // };
+        // var message = "Total Row Count: " + totalRowCount;
+        // message += "\nRow Count: " + rowCount;
+        
+    }
+
+    var rejectdata = () => { 
+        var projectid = $("#projectid").val();
+        $('.alert').show();
+        $('#alerts').html('<strong>Error!</strong> You sent bad field data to the field manager!');
+
+        $.ajax({
+            url: "/returntofield",
+            data: "projectid="+projectid,
+            type: "GET",
+            cache: false,
+            success: function(data) {
+                getRawData(projectid);
+                swal('Rejected', 'Records sent to field Manager!', 'error');
+                // $(".alert").fadeTo(5000, 0).slideUp(1000, function(){
+                //     $(this).remove(); 
+                // });
+            
+            },
+            error: function(data){
+                // alert(data);
+            },
+            dataType: "text"
+        });
+
+    }
+
+    $(document).ready(function() {
+        var name = localStorage.getItem('name');
+        var user = localStorage.getItem('userid');
+        var role = localStorage.getItem('roleId');
+
+        $('.guest').html("<strong style='font-size: 20' >Welcome, "+ name+" </strong>");
+        
+        if(role=='client'){
+            $('.ops').addClass('hidden');
+            $('.ops2').addClass('hidden');
+
+            $('.newproject').addClass('hidden');
+            $('.questionaire').addClass('hidden');
+            
+            $('.users').addClass('hidden');
+            $('.mapping').addClass('hidden');
+
+        }else if(role=='manager'){
+            $('.ops').addClass('hidden');
+            // $('.ops').addClass('hidden');
+            $('.newproject').addClass('hidden');
+            $('.questionaire').addClass('hidden');
+
+            $('.users').addClass('hidden');
+            $('.mapping').addClass('hidden');
+
+        }
+
+        $('.alert').hide();
+
+        $('#example0').DataTable();
+        var user = $('#usermail').val();
+
+        $.ajax({
+            url: "/getcolumnnames",
+            data: "user="+user+"&role="+role,
+            type: "get",
+            cache: false,
+            success: function(resp){
+                // alert(data)
+                console.log(resp)
+                
+                var len = JSON.parse(resp.result).length;
+                var r_data = JSON.parse(resp.result);
+
+                console.log("LENGTH: "+len);
+                // console.log(data);
+                // console.log(r_data);
+
+
+                var val = "<option value='" +0+ "'>"+"Select a Question SKU"+"</option>.....";    
+             
+                for(var x=0; x<len; x++){
+                    val += "<option value='" + r_data[x].code + "'>";
+                    val += r_data[x].sku_description;  
+                    val += "</option>";
+                }
+                $('#projectid').html(val);
+                $('#project').html(resp.project);
+
+            },
+            error: function(data){
+                // alert(data);
+            },
+            dataType: "JSON"
+        });
+
+        // socket.emit('rawdata', user);
+
+        // socket.on('data', (resp) => {
+
+        // })
+
+    });
+</script>
+
+
+
+<script>
+$(document).ready(function() {
+    var table = $('#example').DataTable({
+        "columnDefs": [
+            { "visible": false, "targets": 2 }
+        ],
+        "order": [[ 2, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+ 
+            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                    );
+ 
+                    last = group;
+                }
+            } );
+        }
+    } );
+ 
+    // Order by the grouping
+    $('#example tbody').on( 'click', 'tr.group', function () {
+        var currentOrder = table.order()[0];
+        if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+            table.order( [ 2, 'desc' ] ).draw();
+        }
+        else {
+            table.order( [ 2, 'asc' ] ).draw();
+        }
+    } );
+} );
+</script>
+
+
+
+</body>
+</html>

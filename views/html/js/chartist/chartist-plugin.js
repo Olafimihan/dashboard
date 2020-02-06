@@ -27,13 +27,13 @@ var responsiveOptions = [
   }]
 ];
 
-// new Chartist.Pie('#chartist-pie', data, options, responsiveOptions);
+new Chartist.Pie('#chartist-pie', data, options, responsiveOptions);
 
 /* ======================================================================
 Simple Line Chart
 ====================================================================== */
-new Chartist.Line('#chartist-lineee', {
-  labels: ['Mondays', 'Tuesday', 'Wednesday', 'Thursday', 'Fridays'],
+new Chartist.Line('#chartist-line', {
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
   series: [
     [12, 9, 7, 8, 5],
     [2, 1, 3.5, 7, 3],
@@ -85,13 +85,13 @@ var responsiveOptions = [
   }]
 ];
 
-// new Chartist.Line('#chartist-line-scatter', data, options, responsiveOptions);
+new Chartist.Line('#chartist-line-scatter', data, options, responsiveOptions);
 
 
 /* ======================================================================
 Line Chart with Area
 ====================================================================== */
-new Chartist.Line('#chartist-line-areaaa', {
+new Chartist.Line('#chartist-line-area', {
   labels: [1, 2, 3, 4, 5, 6, 7, 8],
   series: [
     [5, 9, 7, 8, 5, 3, 5, 4]
@@ -104,7 +104,7 @@ new Chartist.Line('#chartist-line-areaaa', {
 /* ======================================================================
 Bi-polar Line Chart with Area Only
 ====================================================================== */
-new Chartist.Line('#chartist-line-bipolarrr', {
+new Chartist.Line('#chartist-line-bipolar', {
   labels: [1, 2, 3, 4, 5, 6, 7, 8],
   series: [
     [1, 2, 3, 1, -2, 0, 1, 0],
@@ -124,7 +124,6 @@ new Chartist.Line('#chartist-line-bipolarrr', {
     showGrid: false
   }
 });
-
 /* ======================================================================
 Overlapping Bars
 ====================================================================== */
@@ -151,13 +150,13 @@ var responsiveOptions = [
   }]
 ];
 
-// new Chartist.Bar('#chartist-bar-overlap', data, options, responsiveOptions);
+new Chartist.Bar('#chartist-bar-overlap', data, options, responsiveOptions);
 
 /* ======================================================================
 Horizontal Bar
 ====================================================================== */
 new Chartist.Bar('#chartist-horizontal-bar', {
-  labels: ['Mondays', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+  labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
   series: [
     [5, 4, 3, 7, 5, 10, 3],
     [3, 2, 9, 5, 4, 6, 4]

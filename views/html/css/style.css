@@ -178,7 +178,7 @@ b,strong {
 
 .container-widget .col-xs-1,.container-widget .col-sm-1,.container-widget .col-md-1,.container-widget .col-lg-1,.container-widget .col-xs-2,.container-widget .col-sm-2,.container-widget .col-md-2,.container-widget .col-lg-2,.container-widget .col-xs-3,.container-widget .col-sm-3,.container-widget .col-md-3,.container-widget .col-lg-3,.container-widget .col-xs-4,.container-widget .col-sm-4,.container-widget .col-md-4,.container-widget .col-lg-4,.container-widget .col-xs-5,.container-widget .col-sm-5,.container-widget .col-md-5,.container-widget .col-lg-5,.container-widget .col-xs-6,.container-widget .col-sm-6,.container-widget .col-md-6,.container-widget .col-lg-6,.container-widget .col-xs-7,.container-widget .col-sm-7,.container-widget .col-md-7,.container-widget .col-lg-7,.container-widget .col-xs-8,.container-widget .col-sm-8,.container-widget .col-md-8,.container-widget .col-lg-8,.container-widget .col-xs-9,.container-widget .col-sm-9,.container-widget .col-md-9,.container-widget .col-lg-9,.container-widget .col-xs-10,.container-widget .col-sm-10,.container-widget .col-md-10,.container-widget .col-lg-10,.container-widget .col-xs-11,.container-widget .col-sm-11,.container-widget .col-md-11,.container-widget .col-lg-11,.container-widget .col-xs-12,.container-widget .col-sm-12,.container-widget .col-md-12,.container-widget .col-lg-12 {
   padding-right: 5px;
-  padding-left: 25px
+  padding-left: 5px
 }
 
 .container-widget .row {
@@ -221,7 +221,7 @@ b,strong {
 
 #top {
   height: 60px;
-  background: #6F4E37;
+  background: #399bff;
   color: #fff;
   width: 100%;
   position: fixed;
@@ -4367,8 +4367,4 @@ table td {
 .table-dic .type {
   font-size: 11px;
   opacity: 0.7
-}
-
-#r2{
-  border-style: dotted;
 }

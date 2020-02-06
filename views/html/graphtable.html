@@ -7,7 +7,7 @@
     <meta name="description" content="Kode is a Premium Bootstrap Admin Template, It's responsive, clean coded and mobile friendly">
     <meta name="keywords" content="bootstrap, admin, dashboard, flat admin template, responsive," />
 
-    <title>Survey - Admin dashboard</title>
+    <title>SurveyPlanet  -  dashboard</title>
     
     <!-- ========== Css Files ========== -->
     
@@ -19,7 +19,7 @@
     <!-- <script src="js/jquery-3.3.1.js"></script> -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-    <script type="text/javascript" src="js/easypiechart/easypiechart.js"></script>
+    <!-- <script type="text/javascript" src="js/easypiechart/easypiechart.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
     <script src="js/socket.js" ></script>
@@ -128,7 +128,6 @@
                         <div class="col-md-4">
                             <label for="questions" class="col-md-7">Select Question</label>
                             <select class="col-md-12" name="questions" id="questions" onchange="getQuestionGraphReport(this.value)">
-
                             </select>
                         </div>
                         <!-- <label class="custom-control-label" for="defaultUnchecked">Default unchecked</label> -->
@@ -174,9 +173,19 @@
                     Simple Pie Chart
                 </div>
                 <div class="panel-body">
-                    <div id="p" ></div>
+                    <div id="p" class="pull-left" ></div>
+
+                    <div > 
+                        <table class="table table-bordered ptbl pull-right">
+
+                        </table>
+
+                    </div>
+
                 </div>
             </div>
+
+            
         </div>
         
         <div class="col-md-12 b hidden" style="background-color: whitesmoke">
@@ -234,7 +243,7 @@
     Chartist
     ===================================================== -->
     <!-- main file -->
-    <script type="text/javascript" src="js/chartist/chartist.js"></script>
+    <!-- <script type="text/javascript" src="js/chartist/chartist.js"></script> -->
     <!-- demo codes -->
     <!-- <script type="text/javascript" src="js/chartist/chartist-plugin.js"></script> -->
 
@@ -253,17 +262,17 @@
     Sparkline
     ================================================ -->
     <!-- main file -->
-    <script type="text/javascript" src="js/sparkline/sparkline.js"></script>
+    <!-- <script type="text/javascript" src="js/sparkline/sparkline.js"></script> -->
     <!-- demo codes -->
-    <script type="text/javascript" src="js/sparkline/sparkline-plugin.js"></script>
+    <!-- <script type="text/javascript" src="js/sparkline/sparkline-plugin.js"></script> -->
 
     <!-- ================================================
     Rickshaw
     ================================================ -->
     <!-- d3 -->
-    <script src="js/rickshaw/d3.v3.js"></script>
+    <!-- <script src="js/rickshaw/d3.v3.js"></script> -->
     <!-- main file -->
-    <script src="js/rickshaw/rickshaw.js"></script>
+    <!-- <script src="js/rickshaw/rickshaw.js"></script> -->
     <!-- demo codes -->
     <!-- <script src="js/rickshaw/rickshaw-plugin.js"></script> -->
 
@@ -281,7 +290,26 @@
                 data: "questionid="+refcode+"&role="+role,
                 // data: "usermail="+usermail+"&project="+project ,
                 cache: false,
-                success: function(data){
+                success: function(data) {
+                    console.log(data.labels.length);
+                
+                    var str = '<table class="table-hover" >';
+                    str += "<tr style='background-color: #ffcccc; color: black; font-size: 26px; font-weight: bold' ><thead><td colspan='3'>"+ data.question +"</td></thead></tr>";
+
+                    str += "<tr style='background-color: whitesmoked; font-weight: bold'><td>S/N</td><td>KPI</td><td>Frequency</td></tr>";
+                    //Build the tabular report
+                    var j=0;
+                    for(var k=0; k < data.labels.length; k++){
+                        j++;
+                        str += "<tr><td>"+ j +"</td><td>"+data.labels[k]+"</td><td>"+data.series[k]+"</td></tr>";
+                    }
+
+                    str += "</table>";
+
+                    $('.ptbl').html(str);
+
+                    console.log(data.labels)
+                    
                     var label; 
 
                     var LabelKPI  = data.labels; 
@@ -293,6 +321,8 @@
                         labels: LabelKPI,
                         type: 'pie'
                     }];
+
+                    console.log(data)
 
                     var layout = {
                         height: 400,
@@ -322,6 +352,7 @@
                     $('.panel-title').html(question);
 
                     // $('.panel-title').add
+
                     
                 },
                 error: function(data){
@@ -340,7 +371,7 @@
                 data: "projectid="+code,
                 cache: false,
                 success: function(data){ 
-                    $("#questions").html(data);
+                    $("#questions").html(data.val);
 
                 },
                 error: function(data){

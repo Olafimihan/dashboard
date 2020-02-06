@@ -10,18 +10,39 @@
   <title>Surveys - Admin dashboard</title>
 
   <!-- ========== Css Files ========== -->
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="css/root.css" rel="stylesheet">
-    
-  <!-- <script src="js/jquery-3.3.1.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
-<script src="js/socket.js" ></script>
 
+  <style>
+    .color-down {
+      color: black;
+    }
+
+    /* .color-up {
+      color: aqua;
+    } */
+
+    .topstats li {
+      /* background-color: whitesmoke; */
+      border-color: white;
+      margin: 2px;
+      border-style: groove;
+
+    }
+
+    .title {
+      font-size: 30px;
+      /* background-color: aliceblue; */
+    }
+  </style>
+    
   <script type="text/javascript" >
     
   
   </script>
   </head>
-  <body onload="getdata()">
+  <body>
   <!-- Start Page Loading -->
   <div class="loading"><img src="img/loading.gif" alt="loading-img"></div>
   <!-- End Page Loading -->
@@ -31,7 +52,7 @@
 
     <!-- Start App Logo -->
     <div class="applogo">
-      <a href="index.html" class="logo">Survey</a>
+      <a href="index.html" class="logo">Survey Planet</a>
     </div>
     <!-- End App Logo -->
  
@@ -46,25 +67,73 @@
 <div class="sidebar clearfix">
 
 <ul class="sidebar-panel nav">
-  <li class="sidetitle">MAIN</li>
+  <li class="sidetitle" > MAIN </li>
   
-  <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-home"></i></span>New Project<span class="label label-default">2</span></a></li>
-  <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-pencil"></i></span>Project Questionaire<span class="label label-default">19</span></a></li>
-  
-  <li  class='data'><a href="#"><span class="icon color9"><i class="fa fa-th"></i></span>Data Tables<span class="caret"></span></a>
+  <li  class='setup'><a href="#"><span class="icon color9"><i class="fa fa-address-card"></i></span>Setup Module<span class="caret"></span></a>
     <ul>
-      <li><a href="datatable.html"><span class="icon color8"><i class="fa fa-database"></i></span>Raw Data</a></li>
+      <li class='newclient'><a href="clients.html"><span class="icon color8"><i class="fa fa-users"></i></span>New Clients</a></li>     
+      <li class='newproject' ><a href="project.html"><span class="icon color5"><i class="fa fa-puzzle-piece"></i></span>New Project<span class="label label-default">2</span></a></li>
+      <li class='questionaire'><a href="questions.html"><span class="icon color6"><i class="fa fa-question-circle-o"></i></span>New Questionaire<span class="label label-default">19</span></a></li>
+      
+      <li class='newoutlet'><a href="outlet.html"><span class="icon color8"><i class="fa fa-university"></i></span>New Outlets</a></li>     
+      <li class='newkpi'><a href="kpi.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>New KPI</a></li>     
+            
+      <li class="newsupervisor" ><a href="supervisor.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Supervisors</a></li>
+      <li class="newsupervisor" ><a href="reps.html"><span class="icon color8"><i class="fa fa-eye"></i></span>New Clients' Reps.</a></li>
+      <li class='newlogindetail'><a href="users.html"><span class="icon color8"><i class="fa fa-user-secret"></i></span>New Login Details</a></li>
+      <li class='excelmap'><a href="excelmap.html"><span class="icon color8"><i class="fa fa-user-excel"></i></span>Excel Data Mapping</a></li>
+      <li class='excelmap'><a href="querybuilder.html"><span class="icon color8"><i class="fa fa-table"></i></span>Query Builder</a></li>
+      <li class='excelmap'><a href="rpt_header.html"><span class="icon color8"><i class="fa fa-flag-o"></i></span>Report Builder</a></li>
+    </ul>
+  </li>
+  
+  <li  class='mapping'><a href="#"><span class="icon color9"><i class="fa fa-sitemap"></i></span> Mapping Module<span class="caret"></span></a>
+    
+    <ul>
+        <li class='mapuser_project'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Users => Project </a></li>
+        <li class='mapsuper_project'><a href="mapsuper.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Supervisors => Project </a></li>
+        <li class='mapkpi_project'><a href="kpiproject.html">      <span class="icon color8"><i class="fa fa-minus"></i></span> KPIs => Project </a></li>
+        <li class='mapoutlet_auditor'><a href="outlet_device.html"><span class="icon color8"><i class="fa fa-minus"></i></span> Outlet => Auditor </a></li>
+    </ul>
+
+  </li>
+
+
+  <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Aggregate/Graphical Report <span class="caret"></span></a>
+    <ul class="">
+
+      <li class='excelmap'><a href="reportbuilder.html"><span class="icon color8"><i class="fa fa-flag-o"></i></span>Report Builder</a></li>
+      
+
       <li><a href="graphtable.html"><span class="icon color8"><i class="fa fa-bar-chart"></i></span>Graphical Data</a></li>
+      <li><a href="waves.html"><span class="icon color8"><i class="fa fa-tasks"></i></span>Compare waves Data</a></li>
+
+    </ul>
+  </li>
+
+  <li  class='report'><a href="#"><span class="icon color9"><i class="fa fa-random"></i></span> Analytics Report <span class="caret"></span></a>
+    <ul class="">
+      <li ><a href="datatable.html"><span class="icon color8 "><i class="fa fa-database" ></i></span>Raw Data</a></li>
+      
+      <li class='userlist'><a href="userslist.html"><span class="icon color8"><i class="fa fa-users"></i></span> My Users List </a></li>     
+      <li class='Supervisorlist'><a href="usersreport.html"><span class="icon color8"><i class="fa fa-eye"></i></span> Supervisors </a></li>     
+      <li class='device'><a href="devices.html"><span class="icon color8"><i class="fa fa-android"></i></span> My Registered Devices </a></li>     
+      <li class='device'><a href="device_tracker.html"><span class="icon color8"><i class="fa fa-android"></i></span> Track Devices </a></li>     
+  
     </ul>
   </li>
 
   <!-- <li><a href="users.html"><span class="icon color8"><i class="fa fa-user"></i></span>Setup BA Device</a></li>      -->
-  <li class='users'><a href="users.html"><span class="icon color8"><i class="fa fa-users"></i></span>Setup Clients</a></li>     
+  
   <!-- <li><a href="mapdevice.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Device to Project </a></li>      -->
-  <li class='mapping'><a href="mapuser.html"><span class="icon color8"><i class="fa fa-android"></i></span>Map Users to Project </a></li>     
-  <li><a href="support.html"><span class="icon color8"><i class="fa fa-home"></i></span>Support Tickets</a></li>     
+  
+  <li><a href="support.html"><span class="icon color8"><i class="fa fa-life-ring"></i></span>Support Tickets</a></li>     
+  <li><a href="dbsockExcel.html"><span class="icon color8"><i class="fa fa-excel-o" aria-hidden="true"></i></span>Import Excel Data</a></li>     
+  <li><a href="/"><span class="icon color8"><i class="fa fa-sign-out" aria-hidden="true"></i></span>Exit Application</a></li>     
 
 </ul>
+
+
  </div>
 
 <!-- </div> -->
@@ -75,15 +144,145 @@
 <!-- START CONTENT -->
 <div class="content">
 
+  <!-- Start Page Header -->
+  <div class="page-header">
+    <h1 class="title">Dashboard</h1>
+      <ol class="breadcrumb">
+        <li class="active">This is a quick overview of some features</li>
+      </ol>
+
+    <!-- Start Page Header Right Div -->
+    <div class="right">
+      <div class="btn-group" role="group" aria-label="...">
+        <a href="index.html" class="btn btn-light">Dashboard</a>
+        <a href="#" class="btn btn-light"><i class="fa fa-refresh"></i></a>
+        <a href="#" class="btn btn-light"><i class="fa fa-search"></i></a>
+        <a href="#" class="btn btn-light" id="topstats"><i class="fa fa-line-chart"></i></a>
+      </div>
+    </div>
+    <!-- End Page Header Right Div -->
+  
+  </div>
+  <!-- End Page Header -->
+  
+  
+
   
  <!-- //////////////////////////////////////////////////////////////////////////// --> 
 <!-- START CONTAINER -->
 <div class="container-widget">
- 
-  
+
   <!-- Start Second Row -->
   <div class="row">
 
+  <!-- Start Top Stats -->
+  <div class="col-md-12" >
+      <ul class="topstats clearfix">
+        <li class="arrow"></li>
+
+        <!-- <li class="col-xs-6 col-lg-2">
+          <span class="title"><i class="fa fa-dot-circle-o"></i> Today Profit</span>
+          <h3>$36.45</h3>
+          <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i> 26%</b> from yesterday</span>
+        </li>
+        <li class="col-xs-6 col-lg-2">
+          <span class="title"><i class="fa fa-calendar-o"></i> This Week</span>
+          <h3>$96.25</h3>
+          <span class="diff"><b class="color-up"><i class="fa fa-caret-up"></i> 26%</b> from last week</span>
+        </li> -->
+        
+        
+
+        <!-- <div class="col-md-6" style="background-color: skyblue"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-puzzle-piece"></i> Total No of Existing Projects </span>
+            <h3 id='noofproject'>5</h3>
+            <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i> 2</b> Clients </span>
+          </li>
+        <!-- </div> -->
+        
+        <!-- <div class="col-md-6" style="background-color: thistle"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-pencil-square-o"></i> Total No of Existing Responses </span>
+            <h3 id='noofresponses'>50</h3>
+            <span class="diff"><b class="color-up"><i class="fa fa-caret-up"></i> 5</b>  Projects</span>
+          </li>
+        <!-- </div> -->
+
+
+        <!-- <div class="col-md-6" style="background-color: thistle"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-question-circle-o "></i> Total Number of questionaires </span>
+            <h3 class="color-up" id='noofquestionaire'>100</h3>
+            <span class="diff"><b class="color-up"><i class="fa fa-caret-up"></i> 30</b> Projects </span>
+          </li>
+        <!-- </div> -->
+        
+        <!-- <div class="col-md-6" style="background-color: skyblue"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-user-plus"></i> Total No of Interviewers </span>
+            <h3 id='noofba'>20</h3>
+            <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i> </b> Active on Field </span>
+          </li>
+            
+        <!-- </div> -->
+        
+        <!-- <div class="col-md-6" style="background-color: skyblue"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-eye"></i> Existing Project Supervisors </span>
+            <h3 class="color-up" id='noofsupervisors' >4</h3>
+            <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i></b> Active on Field </span>
+          </li>
+        <!-- </div> -->
+
+        <!-- <div class="col-md-6" style="background-color: thistle"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-android"></i> Total Devices Registered </span>
+            <h3 class="color-down" id='noofdevices'>30</h3>
+            <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i> 10</b> Active on Field </span>
+          </li>
+        <!-- </div> -->
+
+        <!-- <div class="col-md-6" style="background-color: thistle"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-low-vision"></i> Devices with 'GPS in OFF status' </span>
+            <h3 class="color-down" id='noofdevicesgps'>30</h3>
+            <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i></b> Active on Field </span>
+          </li>
+        <!-- </div> -->
+        
+        <!-- <div class="col-md-6" style="background-color: skyblue"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-low-vision"></i> Devices with 'NETWORK in OFF status' </span>
+            <h3 class="color-down" id='noofdevicesnetwork'>30</h3>
+            <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i> </b> Active on Field </span>
+          </li>
+        <!-- </div> -->
+
+        <!-- <div class="col-md-6" style="background-color: #ffcccc"> -->
+          <li class="col-xs-6 col-lg-2"  >
+            <span class="title" ><i class="fa fa-book"></i> Devices with Unsubmitted forms' </span>
+            <h3 class="color-down" id='noofdevicesnetwork'>30</h3>
+            <span class="diff"><b class="color-down"><i class="fa fa-caret-down"></i></b> Active on Field </span>
+          </li>
+        <!-- </div> -->
+        
+        <li class="col-xs-6 col-lg-2"  >
+          <span class="title" ><i class="fa fa-lightbulb-o"></i> Total Responses Today </span>
+          <h3 class="color-down" id='tot_responses'>30</h3>
+          <span class="diff"><b class="color-down"><i class="fa fa-lightbulb-o"></i></b> All Ongoing Projects </span>
+        </li>
+
+      </ul>
+
+    </div>
+    
+    <!-- End Top Stats -->
+    
+    
+ 
+  
+  
 
    
   </div>
@@ -171,24 +370,19 @@
     <!-- End BlogPost -->
 
 
-    <!-- Start Teammates -->
-    <div class="col-md-12 col-lg-6">
+    <!-- Start Chart -->
+    <div class="col-md-12 col-md-6">
       <div class="panel panel-default">
         <div class="panel-title">
-          Questions
+          Simple Line Chart
         </div>
-        <div class="panel-body">
-          <table class="table table-hover">
- 
-            <tbody id='qtbl'>
-               
-            </tbody>
-          </table>
-
-        </div>
+            <div class="panel-body">
+              <div id="chartist-line" class="ct-chart ct-perfect-fourth"></div>
+            </div>
       </div>
     </div>
-    <!-- End Teammates -->
+    <!-- End Chart -->
+    
 
   </div>
   <!-- End Fifth Row -->
@@ -205,8 +399,13 @@
 <!-- ================================================
 jQuery Library
 ================================================ -->
+<script src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-
+  <!--  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" ></script>        
+  <script src="js/socket.js" ></script>
+  
+  
 <script>
   $(document).ready(function(){
 
@@ -214,21 +413,26 @@ jQuery Library
     var name = localStorage.getItem('name');
     var user = localStorage.getItem('userid');
     var role = localStorage.getItem('roleId');
-
+// alert(role)
     
     if(role=='client'){
-      $('.newproject').addClass('hidden')
-      $('.questionaire').addClass('hidden')
-      
-      $('.users').addClass('hidden')
+      $('.setup').addClass('hidden')
       $('.mapping').addClass('hidden')
+      
+      $('.userlist').addClass('hidden')
+      $('.Supervisorlist').addClass('hidden')
+      $('.device').addClass('hidden')
+      $('.device').addClass('hidden')
+       
+      // $('.users').addClass('hidden')
+      // $('.mapping').addClass('hidden')
 
     }else if(role=='manager'){
-      $('.newproject').addClass('hidden')
-      $('.questionaire').addClass('hidden')
-
-      $('.users').addClass('hidden')
+      $('.setup').addClass('hidden')
       $('.mapping').addClass('hidden')
+
+      // $('.users').addClass('hidden')
+      // $('.mapping').addClass('hidden')
 
     }
 
@@ -242,12 +446,38 @@ jQuery Library
       cache: false,
       success: function(data){
         // alert(data)
-        $('#tbl').html(data);
+        $('#tbl').html(data.str);
+        console.log(data)
+// alert(data.projTotal)
+        $('#noofproject').html(data.projTotal);
+        $('#noofresponses').html(data.RespTotal);
+        $('#noofquestionaire').html(data.questTotal);
+        $('#noofba').html(data.deviceTotal);
+        $('#noofdevices').html(data.deviceTotal);
+        $('#noofsupervisors').html(data.superTotal);
+        $('#noofdevicesgps').html(data.deviceTotal);
+        $('#noofdevicesnetwork').html(data.deviceTotal);
+
+      },
+      error: function(data){
+        // alert(data);
+      },
+      dataType: "json"
+    });
+
+    $.ajax({
+      url: "/boarddata",
+      // data: "user="+user+"&role="+role,
+      type: "get",
+      cache: false,
+      success: function(data){
+        // alert(data)
+        $('#noofdevices').html(data.device);
       },
       error: function(data){
         alert(data);
       },
-      dataType: "text"
+      dataType: "json"
     })
   });
 
@@ -263,7 +493,7 @@ jQuery Library
         // $('#qtbl').html(data);
       },
       error: function(data){
-        alert(data);
+        // alert(data);
       },
       dataType: "text"
     })  }
@@ -489,12 +719,17 @@ var hoverDetail = new Rickshaw.Graph.HoverDetail( {
   }
 } );
 
-var getdata = () => {
-    alert('dele')
-}
-    
 
+</script>
 
+<script>
+  
+  socket.on('all responses today', (ans)=>{
+    console.log(ans);
+    // alert(ans.count)
+    $("#tot_responses").html(ans);
+  });
+  
 </script>
 
 

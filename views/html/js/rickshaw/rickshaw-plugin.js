@@ -67,7 +67,7 @@ for (var i = 0; i < 50; i++) {
 // instantiate our graph!
 
 var graph = new Rickshaw.Graph( {
-  element: document.getElementById("rickshaw-barss"),
+  element: document.getElementById("rickshaw-bars"),
   height: 250,
   renderer: 'bar',
   series: [
